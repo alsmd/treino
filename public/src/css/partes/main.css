@@ -1,36 +1,4 @@
-main{
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    width: 1300px;
-    margin: .7em auto;
-    gap: 1.2em;
-}
-/*Seletores para mudar os animes de dublado para legendado e vice verça*/
-.selectors{
-    display: flex;
-    margin-bottom:.8em ;
-}
-.selector{
-    flex-grow:1;
-    padding: .7em 0;
-    text-align: center;
-    color: white;
-    font-weight: 600;
-    font-size: 1.1em;
-    cursor: pointer;
-}
-.selector:first-child, .area-principal .footer .selector{
-    background:var(--red);
-}
-.selector:last-child{
-    background:var(--dark-gray);
-}
-.selector:first-child:hover, .area-principal .footer .selector:hover{
-    background:var(--light-red);
-}
-.selector:last-child:hover{
-    background:var(--gray);
-}
+
 /*area dos animes*/
 .area-animes{
     display: grid;
@@ -69,62 +37,6 @@ main{
     opacity:.7;
     cursor: pointer;
 }
-.next{
-    margin-top: .8em;
-}
-/*area lateral*/
-    /*Noticias*/
-.area-lateral .noticia .body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    font-weight: 600;
-}
-.area-lateral .noticia .body .mensagem,.area-lateral .noticia .body button{
-    display: block;
-    margin: 1em;
-}
-.area-lateral .noticia .body button{
-    padding: .5em 1em;
-    outline: 0;
-    border: 0;
-    color: white;
-    background: linear-gradient(var(--dark-gray),var(--gray)) ;
-}
-.area-lateral .noticia .body button:hover{
-    cursor: pointer;
-    opacity: .8;
-}
-.area-lateral .noticia .body,.area-lateral .noticia .cabecalho{
-    padding: .6em 0;
-    text-align: center;
-    border: .2px solid var(--gray);
-    box-shadow: 0px 0 .5px 0 var(--white);
-}
-.area-lateral .noticia .cabecalho{
-    color: var(--red);
-    font-size: 1.1em;
-    font-weight: 600;
-}
-/*Lista de nomes animes*/
-.area-lateral .anime-nome-list .nomes-container{
-    max-height: 80vh;
-    overflow-y: scroll;
-}
-.area-lateral .anime-nome-list .body{
-    align-items: flex-start;
-    padding-left: 2em;
-}
-.area-lateral .anime-nome-list .body .mensagem {
-    margin: 0;
-    padding: .2em 0;
-    font-weight: 500;
-}
-.area-lateral .anime-nome-list .body .mensagem:hover{
-    color: var(--red);
-    cursor: pointer;
-}
 /*Banner*/
 .banner{
     height: 240px;
@@ -133,35 +45,14 @@ main{
     background-size: cover;
 }
 /*Medias*/
-@media(max-width: 1340px){
-    main {
-        width: 960px;
-        grid-template-columns: 1fr;
-
-    }
-    .area-lateral{
-        display: none;
-    }
-}
 @media(max-width:1000px){
-    main{
-        width: 640px;
-    }
     .area-animes{
         grid-template-columns: 1fr 1fr;
     }
-    .banner{ 
-        height:160px;
-    }
 }
 @media(max-width:690px){
-    main{
-        width: 319px;
-    }
     .area-animes{
         grid-template-columns: 1fr;
     }
-    .banner{
-        height:110px;
-    }
+
 }

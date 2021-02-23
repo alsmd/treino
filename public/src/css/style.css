@@ -35,3 +35,38 @@ a{
 img{
     width: 100%;
 }
+
+main{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 1300px;
+    margin: .7em auto;
+    gap: 1.2em;
+}
+/*Medias*/
+@media(max-width: 1340px){
+    main {
+        width: 960px;
+        grid-template-columns: 1fr;
+
+    }
+    .area-lateral{
+        display: none;
+    }
+}
+@media(max-width:1000px){
+    main{
+        width: 640px;
+    }
+    .banner{ 
+        height:160px;
+    }
+}
+@media(max-width:690px){
+    main{
+        width: 319px;
+    }
+    .banner{
+        height:110px;
+    }
+}

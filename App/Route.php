@@ -16,9 +16,9 @@ class Route extends Bootstrap{
             'controller'=> 'LoginController',
             'action' => 'index'
         ];
-        $routes['anime'] = [
-            'path' => '/anime',
-            'controller'=> 'AnimeController',
+        $routes['categoria'] = [
+            'path' => '/categoria',
+            'controller'=> 'CategoriaController',
             'action' => 'index'
         ];
         $routes['anime-genero'] = [

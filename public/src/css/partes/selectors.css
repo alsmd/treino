@@ -1,0 +1,29 @@
+/*Seletores para mudar os animes de dublado para legendado e vice verça*/
+.selectors{
+    display: flex;
+    margin-bottom:.8em ;
+}
+.selector{
+    flex-grow:1;
+    padding: .7em 0;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+.selector:first-child, .area-principal .footer .selector{
+    background:var(--red);
+}
+.selector:last-child{
+    background:var(--dark-gray);
+}
+.selector:first-child:hover, .area-principal .footer .selector:hover{
+    background:var(--light-red);
+}
+.selector:last-child:hover{
+    background:var(--gray);
+}
+.next{
+    margin-top: .8em;
+}

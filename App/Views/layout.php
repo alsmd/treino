@@ -43,6 +43,7 @@
         </nav>
     </header>
     <?php $this->content(); ?>
+        
     <footer>
         <div class="content">
             <div class="area-links">
