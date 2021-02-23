@@ -21,6 +21,11 @@ class Route extends Bootstrap{
             'controller'=> 'CategoriaController',
             'action' => 'index'
         ];
+        $routes['anime'] = [
+            'path' => '/anime',
+            'controller'=> 'AnimeController',
+            'action' => 'index'
+        ];
         $routes['anime-genero'] = [
             'path' => '/anime/{}',
             'controller'=> 'AnimeController',

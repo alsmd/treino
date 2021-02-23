@@ -40,7 +40,7 @@
 /*Banner*/
 .banner{
     height: 240px;
-    background-image: url('../../fotos/hero-m.png?21');
+    background-image: url('../../fotos/hero.png?21');
     background-position: center;
     background-size: cover;
 }
@@ -54,5 +54,8 @@
     .area-animes{
         grid-template-columns: 1fr;
     }
+    .banner{
+         background-image: url('../../fotos/hero-m.png?21');
 
+    }
 }

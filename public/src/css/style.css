@@ -6,6 +6,7 @@
     --gray:#333;
     --dark-gray:#201f1f;
     --red: #c92130;
+    --orange: #f96854;
     --light-red: #bd323d;
     --yellow:#f9ff0a;
 }
@@ -22,6 +23,7 @@ font-family: 'Source Sans Pro', sans-serif; 300
 body{
     background: var(--black);
     font-family: sans-serif;
+    position: relative;
 }
 
 /*geral*/

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="src/css/partes/header.css">
     <link rel="stylesheet" href="src/css/partes/scrollbar.css">
     <link rel="stylesheet" href="src/css/partes/footer.css">
+    <link rel="stylesheet" href="src/css/partes/hamburger.css">
 
     <!--Favicon-->
     <link rel='icon' href='src/fotos/favicon.ico' type='image/x-icon'>
@@ -22,7 +23,7 @@
     <header>
         <nav class="navbar">
             <div class="left">
-                <a href="" class="brand"></a>
+                <a href="/" class="brand"></a>
                 <div class="area-barra-pesquisar">
                     <form action="">
                         <input type="text" class="barra-pesquisar" placeholder="Search">
@@ -30,17 +31,45 @@
                     </form>
                 </div>
             </div>
-
+            <div class="hamburger" id="hamburger">
+                <input type="checkbox" class="toggler">
+                <div></div>
+            </div >
             <ul class="nav">
                 <li><a href="">Most Popular</a></li>
-                <li><a href="">Anime</a></li>
+                <li><a href="/anime">Anime</a></li>
                 <li><a href="">Dubbed</a></li>
                 <li><a href="">Movies</a></li>
-                <li><a href="">Categories</a></li>
+                <li><a href="/categoria">Categories</a></li>
                 <li><a href="">Schedule</a></li>
                 <li><a href="">Random</a></li>
             </ul>
         </nav>
+
+        <div class="menu" id='menu'>
+            <ul class="nav">
+                <li><a href="">Most Popular</a></li>
+                <li><a href="/anime">Anime</a></li>
+                <li><a href="">Dubbed</a></li>
+                <li><a href="">Movies</a></li>
+                <li><a href="/categoria">Categories</a></li>
+                <li><a href="">Schedule</a></li>
+                <li><a href="">Random</a></li>
+            </ul>
+        </div>
+        <script>
+            //mostrar e ocultar menu
+            let button = document.getElementById('hamburger');
+            button.addEventListener('click',function(e){
+                let classe = document.getElementById('menu');
+                console.log(classe.className);
+                if(classe.className == 'menu'){
+                    classe.className = 'menu2';
+                }else{
+                    classe.className = 'menu';
+                }
+            })
+        </script>
     </header>
     <?php $this->content(); ?>
         

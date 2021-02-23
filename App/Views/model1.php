@@ -3,7 +3,7 @@
 <main>
     <div class="area-principal">
         <div class="cabecalho">
-            <h2>Categoria</h2>
+            <h2>Animes</h2>
         </div>
         <div class="selectors">
             <div class="selector">

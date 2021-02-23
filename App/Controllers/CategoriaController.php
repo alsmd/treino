@@ -5,7 +5,7 @@ use \App\Connection;
 
 class CategoriaController extends Action{
     public function index(){
-        $this->render('model1','layout');
+        $this->render('model2','layout');
     }
     public function genero(Array $genero){
 
