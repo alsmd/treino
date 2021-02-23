@@ -1,0 +1,112 @@
+/*header*/
+header .navbar{
+    padding: .5em 0;
+    background: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1300px;
+    margin: 0 auto;
+}
+
+header .navbar .nav{
+    display: flex;
+    flex-wrap:wrap;
+}
+header .navbar .nav a{
+    padding: .2em .6em;
+    font-size: 1.1em;
+    border-right: 1px solid var(--white);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+}
+header .navbar .nav a:hover{
+    color: var(--red);
+    border-right: 1px solid var(--red);
+
+}
+header .navbar .nav li:last-child a{
+    border: none;
+    color: var(--yellow);
+
+}
+header .navbar .left{
+    display:flex;
+    align-items: flex-start;
+}
+header .navbar .brand{
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-image: url('../../fotos/ah_logo.png');
+    background-position: center center;
+    background-size: 40px 40px;
+}
+
+    /*Barra de pesquisar*/
+header .navbar .area-barra-pesquisar form{
+    display: flex;
+    align-items: center;
+}
+header .navbar .area-barra-pesquisar .barra-pesquisar,header .navbar .area-barra-pesquisar{
+    background: var(--gray);
+    border:none;
+    outline: 0;
+}
+header .navbar .area-barra-pesquisar{
+    padding-left: .7em;
+}
+header .navbar .area-barra-pesquisar .barra-pesquisar{
+    width: 400px;
+    color: white;
+    padding: .3em .5em;
+    font-family: 'DotGothic16', sans-serif; 
+    font-weight: 500;
+}
+header .navbar .area-barra-pesquisar .btn-pesquisar{
+   width: 40px;
+   height: 40px;
+   background-color: var(--gray);
+   background-image: url('../../fotos/ah_search.png');
+   background-position: center center;
+   background-size:40px 40px;
+    border: none;
+    outline: 0;
+}
+header .navbar .area-barra-pesquisar .btn-pesquisar:hover,header .navbar .brand:hover{
+    opacity: .7;
+    cursor: pointer;
+}
+/*Medias*/
+@media(max-width:1340px){
+    header .navbar .area-barra-pesquisar .barra-pesquisar{
+        width: 200px;
+    }
+    header .navbar{
+        width: 960px;
+    }
+}
+@media(max-width:1000px){
+    header .navbar{
+        width: 640px;
+    }
+    header .navbar .nav{
+        display: none;
+
+    }
+    header .navbar .area-barra-pesquisar .barra-pesquisar{
+        width: 420px;
+    }
+}
+
+@media(max-width:690px){
+    header .navbar{
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    header .navbar .area-barra-pesquisar .barra-pesquisar{
+        width: 110px;
+    }
+}
+
