@@ -77,6 +77,7 @@ header .navbar .area-barra-pesquisar .btn-pesquisar:hover,header .navbar .brand:
     opacity: .7;
     cursor: pointer;
 }
+
 /*Medias*/
 @media(max-width:1340px){
     header .navbar .area-barra-pesquisar .barra-pesquisar{
@@ -107,6 +108,9 @@ header .navbar .area-barra-pesquisar .btn-pesquisar:hover,header .navbar .brand:
     }
     header .navbar .area-barra-pesquisar .barra-pesquisar{
         width: 110px;
+    }
+    header .titulo{
+        display:none;
     }
 }
 

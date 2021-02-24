@@ -31,7 +31,7 @@ class Anime extends Container{
             FROM
                 anime
             WHERE
-                anime.nome LIKE :filter
+                anime.nome LIKE :filter OR nome_alternativo LIKE :filter
         ";
         $animes = $this->query($query)->runQuery(['filter'=>$filter]);
         foreach($animes as $indice => $anime){

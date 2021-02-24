@@ -41,6 +41,11 @@ class Route extends Bootstrap{
             'controller'=> 'AnimeController',
             'action' => 'search'
         ];
+        $routes['admin'] = [
+            'path' => '/admin',
+            'controller'=> 'AdminController',
+            'action' => 'index'
+        ];
         $this->setRoutes($routes);
     }
 
