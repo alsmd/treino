@@ -20,6 +20,7 @@ header{
 .anime{
     color: white;
     padding: .7em 1em;
+    display: block;
 }
 .anime:hover{
     color: var(--red);

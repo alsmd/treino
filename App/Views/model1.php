@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="src/css/partes/model1.css">
-<link rel="stylesheet" href="src/css/partes/selectors.css">
+<link rel="stylesheet" href="http://localhost:8080/src/css/partes/model1.css">
+<link rel="stylesheet" href="http://localhost:8080/src/css/partes/selectors.css">
 <main>
     <div class="area-principal">
         <div class="cabecalho">
@@ -15,111 +15,39 @@
         </div>
         <!--Animes-->
         <div class="area-animes">
-            <div class="anime">
-                <div class="cabecalho">
-                    <img src="https://miro.medium.com/max/600/0*bawLRaB_Fuuw73J7.jpg" alt="">
-                </div>
-                <div class="body">
-                    <p class="nome">1º One piece</p>
-                    <p class="categorias">acao, comedia, aventura, fantasia</p>
-                </div>
-            </div>
+            <?php $posicao = 1; foreach($this->view->animes as $anime){ ?>
+                <div class="anime">
+                    <div class="cabecalho">
+                        <img src="<?php echo $anime['foto'] ?>" alt="">
+                    </div>
+                    <div class="body">
+                        <p class="nome"><?php echo $posicao ?>º <?php echo $anime['nome'] ?></p>
+                        <p class="categorias">
+                            <?php 
+                            $x = 0;
+                            foreach($anime['categorias'] as $categorias){
+                                if($x == 0){
+                                    echo ' '. $categorias['nome'];
+                                }else{
+                                    echo ' , '. $categorias['nome'];
+                                }
+                                $x++;
+                            } ?>
 
-            <div class="anime">
-                <div class="cabecalho">
-                    <img src="https://www.magazine-hd.com/apps/wp/wp-content/uploads/2019/04/the-promised-neverland.jpg" alt="">
+                        </p>
+                    </div>
                 </div>
-                <div class="body">
-                    <p class="nome">1º One piece</p>
-                    <p class="categorias">acao, comedia, aventura, fantasia</p>
-                </div>
-            </div>
-            <div class="anime">
-                <div class="cabecalho">
-                    <img src="https://miro.medium.com/max/600/0*bawLRaB_Fuuw73J7.jpg" alt="">
-                </div>
-                <div class="body">
-                    <p class="nome">1º One piece</p>
-                    <p class="categorias">acao, comedia, aventura, fantasia</p>
-                </div>
-            </div>
-
-            <div class="anime">
-                <div class="cabecalho">
-                    <img src="https://www.magazine-hd.com/apps/wp/wp-content/uploads/2019/04/the-promised-neverland.jpg" alt="">
-                </div>
-                <div class="body">
-                    <p class="nome">1º One piece</p>
-                    <p class="categorias">acao, comedia, aventura, fantasia</p>
-                </div>
-            </div>
-
-            <div class="anime">
-                <div class="cabecalho">
-                    <img src="https://miro.medium.com/max/600/0*bawLRaB_Fuuw73J7.jpg" alt="">
-                </div>
-                <div class="body">
-                    <p class="nome">1º One piece</p>
-                    <p class="categorias">acao, comedia, aventura, fantasia</p>
-                </div>
-            </div>
-
-            <div class="anime">
-                <div class="cabecalho">
-                    <img src="https://www.magazine-hd.com/apps/wp/wp-content/uploads/2019/04/the-promised-neverland.jpg" alt="">
-                </div>
-                <div class="body">
-                    <p class="nome">1º One piece</p>
-                    <p class="categorias">acao, comedia, aventura, fantasia</p>
-                </div>
-            </div>
-
-            <div class="anime">
-                <div class="cabecalho">
-                    <img src="https://miro.medium.com/max/600/0*bawLRaB_Fuuw73J7.jpg" alt="">
-                </div>
-                <div class="body">
-                    <p class="nome">1º One piece</p>
-                    <p class="categorias">acao, comedia, aventura, fantasia</p>
-                </div>
-            </div>
-
-            <div class="anime">
-                <div class="cabecalho">
-                    <img src="https://www.magazine-hd.com/apps/wp/wp-content/uploads/2019/04/the-promised-neverland.jpg" alt="">
-                </div>
-                <div class="body">
-                    <p class="nome">1º One piece</p>
-                    <p class="categorias">acao, comedia, aventura, fantasia</p>
-                </div>
-            </div>
-            <div class="anime">
-                <div class="cabecalho">
-                    <img src="https://miro.medium.com/max/600/0*bawLRaB_Fuuw73J7.jpg" alt="">
-                </div>
-                <div class="body">
-                    <p class="nome">1º One piece</p>
-                    <p class="categorias">acao, comedia, aventura, fantasia</p>
-                </div>
-            </div>
-
-            <div class="anime">
-                <div class="cabecalho">
-                    <img src="https://www.magazine-hd.com/apps/wp/wp-content/uploads/2019/04/the-promised-neverland.jpg" alt="">
-                </div>
-                <div class="body">
-                    <p class="nome">1º One piece</p>
-                    <p class="categorias">acao, comedia, aventura, fantasia</p>
-                </div>
-            </div>
+            <?php $posicao++; } ?>
 
             
         </div><!--Fim animes-->
-        <div class="footer">
-            <div class="selector next">
-                Next Page
+        <?php if(count($this->view->animes) == 8){ ?>
+            <div class="footer">
+                <div class="selector next">
+                    Next Page
+                </div>
             </div>
-        </div>
+        <?php } ?>
     </div>
 
     <?php $this->renderAside(); ?>

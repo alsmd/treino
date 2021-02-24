@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="src/css/partes/aside.css">
+<link rel="stylesheet" href="http://localhost:8080/src/css/partes/aside.css">
 <div class="area-lateral">
     <div class="noticia">
         <div class="cabecalho">

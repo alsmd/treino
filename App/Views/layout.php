@@ -9,15 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <!--Css-->
-    <link rel="stylesheet" href="src/css/normalize.css">
-    <link rel="stylesheet" href="src/css/style.css">
-    <link rel="stylesheet" href="src/css/partes/header.css">
-    <link rel="stylesheet" href="src/css/partes/scrollbar.css">
-    <link rel="stylesheet" href="src/css/partes/footer.css">
-    <link rel="stylesheet" href="src/css/partes/hamburger.css">
+    <link rel="stylesheet" href="http://localhost:8080/src/css/normalize.css">
+    <link rel="stylesheet" href="http://localhost:8080/src/css/style.css">
+    <link rel="stylesheet" href="http://localhost:8080/src/css/partes/header.css">
+    <link rel="stylesheet" href="http://localhost:8080/src/css/partes/scrollbar.css">
+    <link rel="stylesheet" href="http://localhost:8080/src/css/partes/footer.css">
+    <link rel="stylesheet" href="http://localhost:8080/src/css/partes/hamburger.css">
 
     <!--Favicon-->
-    <link rel='icon' href='src/fotos/favicon.ico' type='image/x-icon'>
+    <link rel='icon' href='http://localhost:8080/src/fotos/favicon.ico' type='image/x-icon'>
 </head>
 <body>
     <header>

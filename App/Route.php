@@ -16,10 +16,15 @@ class Route extends Bootstrap{
             'controller'=> 'LoginController',
             'action' => 'index'
         ];
-        $routes['categoria'] = [
+        $routes['categorias'] = [
             'path' => '/categoria',
             'controller'=> 'CategoriaController',
             'action' => 'index'
+        ];
+        $routes['categoria'] = [
+            'path' => '/categoria/{}',
+            'controller'=> 'CategoriaController',
+            'action' => 'show'
         ];
         $routes['anime'] = [
             'path' => '/anime',

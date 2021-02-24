@@ -4,11 +4,10 @@
         <div class="titulo">
             Categorias
         </div>
-
         <div class="animes">
-            <div class="anime">Acao (5)</div>
-            <div class="anime">Romance (7)</div>
-            <div class="anime">Fantasia (14)</div>
+            <?php foreach($this->view->categorias as $categoria){ ?>
+                <a class="anime" href="categoria/<?php echo $categoria['slug']; ?>"><?php echo $categoria['nome']; ?> (5)</a>
+            <?php } ?>
         </div>
     </div>
 

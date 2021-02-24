@@ -12,7 +12,8 @@ $table_anime = "
         nome varchar(200) not null,
         nome_alternativo varchar(200) not null,
         status enum('finalizado','andamento','cancelado'),
-        descricao text
+        descricao text,
+        foto text
     );
 ";
 
