@@ -25,8 +25,8 @@
             <div class="left">
                 <a href="/" class="brand"></a>
                 <div class="area-barra-pesquisar">
-                    <form action="">
-                        <input type="text" class="barra-pesquisar" placeholder="Search">
+                    <form action="/pesquisar" method="post">
+                        <input type="text" class="barra-pesquisar" placeholder="Search" name='filter'>
                         <input type="submit" class="btn-pesquisar" value="" >
                     </form>
                 </div>

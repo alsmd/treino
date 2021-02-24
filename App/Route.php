@@ -36,6 +36,11 @@ class Route extends Bootstrap{
             'controller'=> 'AnimeController',
             'action' => 'genero'
         ];
+        $routes['pesquisar'] = [
+            'path' => '/pesquisar',
+            'controller'=> 'AnimeController',
+            'action' => 'search'
+        ];
         $this->setRoutes($routes);
     }
 
