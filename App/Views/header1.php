@@ -20,7 +20,7 @@
             <li><a href="">Movies</a></li>
             <li><a href="/categoria">Categories</a></li>
             <li><a href="">Schedule</a></li>
-            <li><a href="">Random</a></li>
+            <li><a href="/admin">admin</a></li>
         </ul>
     </nav>
 
@@ -32,7 +32,7 @@
             <li><a href="">Movies</a></li>
             <li><a href="/categoria">Categories</a></li>
             <li><a href="">Schedule</a></li>
-            <li><a href="">Random</a></li>
+            <li><a href="/admin">Admin</a></li>
         </ul>
     </div>
     <script>

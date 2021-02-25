@@ -1,5 +1,8 @@
 main{
     margin-top: 0;
+    gap: 0;
+    width: 100%;
+    grid-template-columns:8fr 1fr;
 }
 #menu a{
     display: block;
@@ -11,14 +14,68 @@ main{
     color: var(--light-red);
     cursor: pointer;
 }
-main{
+
+/*barra lateral*/
+.nomes-container .body:hover{
+    cursor: pointer;
+}
+.nomes-container .body:hover a{
+    color: var(--red);
+}
+/*Dropdown*/
+
+.dropdown-toggler + .dropdown-container{
+    display: none;
+}
+.dropdown:hover .dropdown-toggler + .dropdown-container{
+    display: block;
     width: 100%;
+}
+
+
+.nomes-container .body:hover{
+    background: var(--light-black);
+}
+.nomes-container .dropdown:hover{
+    background: none;
+}
+.dropdown-toggler i{
+    transition: .4s;
+    transform: rotate(-90deg);
+}
+.dropdown:hover .dropdown-toggler i{
+    transform: rotate(0deg);
+}
+.dropdown .dropdown-container{
+}
+.dropdown .dropdown-container .dropdown-item{
+    display: block;
+    padding: .6em;
+    text-align: center;
+    color: var(--light-gray) !important;
+    border-bottom: 1px solid var(--white);
+    border-radius: 50%;
+}
+.area-lateral .noticia .body{
+    padding-left: .3em;
+}
+.dropdown .dropdown-container .dropdown-item:hover{
+    color: var(--white) !important;
+    border-bottom: 1px solid var(--blue);
+}
+/*Pagina Principal*/
+.pag-principal h1{
+    text-align: center;
+    color: var(--white);
+    font-size: 2em;
+}
+.pag-principal .cabecalho{
+    border-bottom: 1px solid var(--light-gray);
 }
 @media(max-width: 1340px){
     main {
         width: 100%;
-        grid-template-columns:3fr 1fr;
-
+        grid-template-columns:8fr 1fr;
     }
     .area-lateral{
         display: block;
@@ -27,6 +84,7 @@ main{
 @media(max-width:1000px){
     main{
         width: 100%;
+        grid-template-columns:7fr 1fr;
     }
     header .navbar .nav {
         display: block;
@@ -44,5 +102,9 @@ main{
     .area-lateral{
         display: none;
     }
-
+}
+@media(min-width:690px){
+    #menu{
+        display: none !important;
+    }
 }
