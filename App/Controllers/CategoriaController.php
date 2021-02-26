@@ -35,14 +35,29 @@ class CategoriaController extends Action{
     }
 
     public function save(){
-        print_r($_POST);
+        $dados = $_POST;
+        $requer = [
+            "nome" => 3,
+            "slug" => 3
+        ];
+        $redirecionamento = "/admin/categoria/gerenciar";
+        //verifica se os dados estão com a formatação correta, caso não esteja sera redirecionado
+        $this->verificarDados($dados,$requer,$redirecionamento);
+        $categoria = new Categoria(Connection::getDb());
+        $retorno = $categoria->create($_POST);
+        if($retorno){
+            $mensagem = "Categoria criada com sucesso";
+        }else{
+            $mensagem = "Houve um erro ao criar categoria";
+        }
+        header("Location:/admin/categoria/gerenciar?mensagem=$mensagem");
     }
     public function update(){
 
     }
     public function delete(){
 
-    }
+    }   
 
 
 }
