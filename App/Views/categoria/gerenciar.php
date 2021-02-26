@@ -26,13 +26,21 @@
             </form>
         </div>
         <div class="col-2">
+            <?php foreach($this->view->categorias as $categoria){ ?>
             <div class="item border">
-                <div class="slug">acao-e-aventura</div>
+                <a class="slug" href="<?php echo '/categoria/'.$categoria['slug'] ?>" target="_blank"><?php echo $categoria['nome'] ?></a>
                 <div class="links">
-                    <button class="edite">edite</button>
-                    <button class="remove">delete</button>
+                    <form action="/admin/categoria/edite" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $categoria['id']; ?>">
+                        <button class="edite" type="submit">edite</button>
+                    </form>
+                    <form action="/admin/categoria/delete" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $categoria['id']; ?>">
+                        <button class="remove" type="submit">delete</button>
+                    </form>
                 </div>
             </div>
+            <?php }?>
         </div>
     </div>
 </div>

@@ -159,6 +159,9 @@ main{
     color: white;
     cursor: pointer;
 }
+.pag-principal .body .col-2 .item .links{
+    display: flex;
+}
 .pag-principal .body .col-2 .item .edite{
     border: 1px solid var(--yellow);
 }

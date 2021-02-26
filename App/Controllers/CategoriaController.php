@@ -25,12 +25,17 @@ class CategoriaController extends Action{
     /*CRUDS*/
 
     public function gerenciar(){
+        $categoria = new Categoria(Connection::getDb());
+        $this->view->categorias =$categoria->read();
         $this->view->adminPageAtual = 'categoria.gerenciar';
         $this->render('admin','layout');
     }
 
     public function edite(){
+        $categoria = new Categoria(Connection::getDb());
+        $this->view->categorias =$categoria->read();
         $this->view->adminPageAtual = 'categoria.edite';
+        $this->view->categoria = $categoria->read('where id = :id',['id'=>$_POST['id']]);
         $this->render('admin','layout');
     }
 
@@ -53,10 +58,27 @@ class CategoriaController extends Action{
         header("Location:/admin/categoria/gerenciar?mensagem=$mensagem");
     }
     public function update(){
-
+        $id = $_POST['id'];
+        unset($_POST['id']);
+        $categoria = new Categoria(Connection::getDb());
+        $retorno = $categoria->update($_POST,$id);
+        if($retorno){
+            $mensagem = "Categoria Atualizada Com Sucesso!";
+        }else{
+            $mensagem = "Houve Um Erro Ao Atualizar Categoria!";
+        }
+        header("Location:/admin/categoria/gerenciar?mensagem=$mensagem");
     }
     public function delete(){
-
+        $id = $_POST['id'];
+        $categoria = new Categoria(Connection::getDb());
+        $retorno = $categoria->delete($id);
+        if($retorno){
+            $mensagem = "Categoria Apagada Com Sucesso!";
+        }else{
+            $mensagem = "Houve Um Erro Ao Apagar Categoria!";
+        }
+        header("Location:/admin/categoria/gerenciar?mensagem=$mensagem");
     }   
 
 
