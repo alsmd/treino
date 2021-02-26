@@ -41,11 +41,47 @@ class Route extends Bootstrap{
             'controller'=> 'AnimeController',
             'action' => 'search'
         ];
+        /*Area Administrativa*/
         $routes['admin'] = [
             'path' => '/admin',
             'controller'=> 'AdminController',
             'action' => 'index'
         ];
+        $routes['admin-controller'] = [
+            'path' => '/admin/{}/{}',
+            'controller'=> 'AdminController',
+            'action' => 'controlarAcao'
+        ];
+        /* $routes['categoria-create'] = [
+            'path' => '/admin/categoria/create',
+            'controller'=> 'CategoriaController',
+            'action' => 'create'
+        ];
+        $routes['categoria-edite'] = [
+            'path' => '/admin/categoria/edite',
+            'controller'=> 'CategoriaController',
+            'action' => 'edite'
+        ];
+        $routes['categoria-remove'] = [
+            'path' => '/admin/categoria/remove',
+            'controller'=> 'CategoriaController',
+            'action' => 'remove'
+        ];
+        $routes['categoria-save'] = [
+            'path' => '/admin/categoria/save',
+            'controller'=> 'CategoriaController',
+            'action' => 'save'
+        ];
+        $routes['categoria-update'] = [
+            'path' => '/admin/categoria/update',
+            'controller'=> 'CategoriaController',
+            'action' => 'update'
+        ];
+        $routes['categoria-delete'] = [
+            'path' => '/admin/categoria/delete',
+            'controller'=> 'CategoriaController',
+            'action' => 'delete'
+        ]; */
         $this->setRoutes($routes);
     }
 

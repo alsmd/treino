@@ -46,8 +46,6 @@ main{
 .dropdown:hover .dropdown-toggler i{
     transform: rotate(0deg);
 }
-.dropdown .dropdown-container{
-}
 .dropdown .dropdown-container .dropdown-item{
     display: block;
     padding: .6em;
@@ -72,6 +70,109 @@ main{
 .pag-principal .cabecalho{
     border-bottom: 1px solid var(--light-gray);
 }
+.pag-principal .body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5em;
+}
+/*Form*/
+.pag-principal .body form label{
+    font-weight: 600;
+}
+.pag-principal .body form .form-group{
+    padding: .6em 0;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+}
+.pag-principal .body form .form-group input,.pag-principal .body form .form-group textarea{
+    padding: .5em;
+    border: 1px solid white;
+    border-radius: .6em;
+    outline: 0;
+    width: 100%;
+    margin-top: .3em;
+    background: transparent;
+    color: white;
+}
+.pag-principal .body form  .form-group-checkbox{
+    color: var(--white);
+}
+.pag-principal .body form  .form-group-checkbox label{
+    text-align: center;
+    display: block;
+}
+.pag-principal .body form .form-group-checkbox .categorias{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+}
+.pag-principal .body form .form-group-checkbox .categorias .categoria{
+    margin: .5em;
+}   
+.pag-principal .body form .submit{
+    border: none;
+    padding: 1em;
+    width: 100%;
+    outline: 0;
+    background: linear-gradient(var(--light-blue),var(--blue));
+    color:white;
+    border-radius: .5em;
+    transition: .5s;
+}
+.pag-principal .body form .submit:hover{
+    opacity: .8;
+    cursor: pointer;
+    color:black;
+}
+/*Lista de items*/
+.pag-principal .body .col-2{
+    display: flex;
+    flex-direction: column;
+    max-height: 250px;
+    overflow-y: scroll;
+    padding: 0 !important;
+}
+.pag-principal .body .col-2 .item{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    font-weight:600;
+    color:white;
+    box-sizing: border-box;
+}
+/*button*/
+.pag-principal .body .col-2 .item button{
+    padding: .4em;
+    border: none;
+    outline: 0;
+    border-radius:.5em;
+    background: transparent;
+    color: white;
+    transition: .5s;
+}
+.pag-principal .body .col-2 .item button:hover{
+    color: white;
+    cursor: pointer;
+}
+.pag-principal .body .col-2 .item .edite{
+    border: 1px solid var(--yellow);
+}
+.pag-principal .body .col-2 .item .edite:hover{
+    background:var(--yellow);
+    color: var(--black);
+}
+.pag-principal .body .col-2 .item .remove{
+    border: 1px solid var(--red);
+}
+.pag-principal .body .col-2 .item .remove:hover{
+    background:var(--red);
+    color: var(--black);
+}
 @media(max-width: 1340px){
     main {
         width: 100%;
@@ -84,16 +185,19 @@ main{
 @media(max-width:1000px){
     main{
         width: 100%;
-        grid-template-columns:7fr 1fr;
+        grid-template-columns:7fr;
     }
     header .navbar .nav {
         display: block;
+    }
+    .area-lateral{
+        display: none;
     }
 }
 @media(max-width:690px){
     main{
         width: 100%;
-        grid-template-columns:8fr 1fr;
+        grid-template-columns:8fr;
         gap: 0;
     }
     .hamburger{
@@ -103,7 +207,7 @@ main{
         display: none;
     }
 }
-@media(min-width:690px){
+@media(min-width:1340px){
     #menu{
         display: none !important;
     }

@@ -9,17 +9,13 @@
             <div class="body dropdown">
                 <a  class="mensagem dropdown-toggler">Anime <i class="fas fa-caret-down"></i></a>
                 <div class="dropdown-container">
-                    <a href="" class="dropdown-item">Criar</a>
-                    <a href="" class="dropdown-item">Editar</a>
-                    <a href="" class="dropdown-item">Excluir</a>
+                    <a href="/admin/anime/gerenciar" class="dropdown-item">Gerenciar</a>
                 </div>
             </div>
             <div class="body dropdown">
                 <a  class="mensagem dropdown-toggler">Categorias <i class="fas fa-caret-down"></i></a>
                 <div class="dropdown-container">
-                    <a href="" class="dropdown-item">Criar</a>
-                    <a href="" class="dropdown-item">Editar</a>
-                    <a href="" class="dropdown-item">Excluir</a>
+                    <a href="/admin/anime/gerenciar" class="dropdown-item">Gerenciar</a>
                 </div>
             </div>
             <div class="body">
@@ -34,13 +30,24 @@
         </div>
     </div>
 </div>
+<div class="hamburger" id="hamburger">
+        <input type="checkbox" class="toggler">
+        <div></div>
+    </div >
 <main>
+
     <div class="border area-administrativa">
+        <?php
+        if(isset($this->view->adminPageAtual)){
+            $this->render($this->view->adminPageAtual);
+        }else{?>
         <div class="pag-principal">
             <div class="cabecalho">
                 <h1>Bem vindo a Area Administrativa</h1>
             </div>
         </div>
+        <?php }?>
+
     </div>
     
     <div class="area-lateral">
@@ -55,17 +62,13 @@
                 <div class="body dropdown">
                     <a  class="mensagem dropdown-toggler">Animes <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-container">
-                        <a href="" class="dropdown-item">Criar</a>
-                        <a href="" class="dropdown-item">Editar</a>
-                        <a href="" class="dropdown-item">Excluir</a>
+                        <a href="/admin/anime/gerenciar" class="dropdown-item">Gerenciar</a>
                     </div>
                 </div>
                 <div class="body dropdown">
                     <a  class="mensagem dropdown-toggler">Categorias <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-container">
-                        <a href="" class="dropdown-item">Criar</a>
-                        <a href="" class="dropdown-item">Editar</a>
-                        <a href="" class="dropdown-item">Excluir</a>
+                        <a href="/admin/categoria/gerenciar" class="dropdown-item">Gerenciar</a>
                     </div>
                 </div>
                 <div class="body">
@@ -80,10 +83,7 @@
             </div>
         </div>
     </div>
-    <div class="hamburger" id="hamburger">
-        <input type="checkbox" class="toggler">
-        <div></div>
-    </div >
+
 
     <script>
         //mostrar e ocultar menu

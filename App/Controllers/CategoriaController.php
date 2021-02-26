@@ -22,6 +22,27 @@ class CategoriaController extends Action{
         $this->render('model1','layout');
     }
 
+    /*CRUDS*/
+
+    public function gerenciar(){
+        $this->view->adminPageAtual = 'categoria.gerenciar';
+        $this->render('admin','layout');
+    }
+
+    public function edite(){
+        $this->view->adminPageAtual = 'categoria.edite';
+        $this->render('admin','layout');
+    }
+
+    public function save(){
+        print_r($_POST);
+    }
+    public function update(){
+
+    }
+    public function delete(){
+
+    }
 
 
 }

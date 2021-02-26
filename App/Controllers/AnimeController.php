@@ -14,6 +14,25 @@ class AnimeController extends Action{
         $this->render('model1','layout');
     }
 
+    /*Cruds*/
+    public function gerenciar(){
+        $this->view->adminPageAtual = 'anime.gerenciar';
+        $this->render('admin','layout');
+    }
+
+    public function edite(){
+        $this->view->adminPageAtual = 'anime.edite';
+        $this->render('admin','layout');
+    }
+    public function save(){
+        print_r($_POST);
+    }
+    public function update(){
+
+    }
+    public function delete(){
+
+    }
 
 
 }

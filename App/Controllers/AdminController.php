@@ -9,6 +9,12 @@ class AdminController extends Action{
         $this->render('admin','layout');
     }
 
+    public function controlarAcao($parametros){
+        $classe = 'App\Controllers\\'.ucfirst($parametros[2]) . 'Controller';
+        $acao = $parametros[3];
+        $instancia = new $classe;
+        $instancia->$acao();
+    }
 
 
 }
