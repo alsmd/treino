@@ -23,7 +23,7 @@
                         <p style="color:var(--red)"><?php echo $_GET['slug']; ?></p>
                     <?php }?>
                 </div>
-                <button type="submit" class="submit">Criar</button>
+                <button type="submit" class="submit">Editar</button>
             </form>
         </div>
         <div class="col-2">

@@ -13,7 +13,8 @@ $table_anime = "
         nome_alternativo varchar(200) not null,
         status enum('finalizado','andamento','cancelado'),
         descricao text,
-        foto text
+        foto text,
+        slug varchar(200)
     );
 ";
 

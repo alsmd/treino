@@ -11,8 +11,8 @@ class Anime extends Container{
     protected $descricao;
     protected $foto;
     protected $query;
-    protected $columns = "(nome,slug)";
-    protected $columns_v = "(:nome,:slug)";
+    protected $columns = "(nome,slug,nome_alternativo,foto,descricao,status)";
+    protected $columns_v = "(:nome,:slug,:nome_alternativo,:foto,:descricao,:status)";
 
     /*Setters and Getters*/
     public function __set($name,$value){

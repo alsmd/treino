@@ -87,7 +87,7 @@ main{
     align-items: center;
     margin-bottom: 1em;
 }
-.pag-principal .body form .form-group input,.pag-principal .body form .form-group textarea{
+.pag-principal .body form .form-group input,.pag-principal .body form .form-group textarea,.pag-principal .body form .form-group select{
     padding: .5em;
     border: 1px solid white;
     border-radius: .6em;
@@ -96,6 +96,9 @@ main{
     margin-top: .3em;
     background: transparent;
     color: white;
+}
+.pag-principal .body form .form-group select option{
+    color: var(--black);
 }
 .pag-principal .body form  .form-group-checkbox{
     color: var(--white);
