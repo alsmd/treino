@@ -1,0 +1,35 @@
+main{
+    margin: 0 auto;
+}
+.area-principal{
+    color: white;
+}
+.superior{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: .4em;
+}
+.superior .descricao{
+    padding: 0 .7em;
+}
+.superior .descricao h3{
+    color: var(--white);
+}
+.superior .descricao p{
+    color: var(--silver);
+}
+.area-imagem img{
+    min-height: 400px;
+}
+.categoria{
+    color: var(--red);
+}
+.categoria:hover{
+    color: var(--white);
+
+}
+@media(max-width:690px){
+    .superior{
+        grid-template-columns: 1fr;
+    }
+}

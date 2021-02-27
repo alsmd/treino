@@ -7,12 +7,25 @@ use \App\Connection;
 
 class AnimeController extends Action{
     public function index(){
+        $anime = new Anime(Connection::getDb());
+        $this->view->dados = $anime->read('order by nome asc');
+        $this->view->opcao = '/anime/';
+        $this->view->titulo = "Animes";
+
+        $this->render('model2','layout');
     }
     public function search(){
         $anime_class = new Anime(Connection::getDB());
         $animes = $anime_class->filter($_POST['filter']);
         $this->view->animes = $animes;
         $this->render('model1','layout');
+    }
+    public function show($slug){
+        $slug = $slug[2];
+        $anime_class = new Anime(Connection::getDB());
+        $this->view->anime = $anime_class->read('where slug = :slug',compact('slug'))[0];
+        $this->view->categorias = $anime_class->query("SELECT categoria.nome,categoria.slug FROM anime_categoria RIGHT JOIN categoria on(categoria.id = anime_categoria.fk_id_categoria) WHERE anime_categoria.fk_id_anime = :id_anime")->runQuery(['id_anime'=>$this->view->anime['id']]);
+        $this->render('anime.show','layout');
     }
 
     /*Cruds*/

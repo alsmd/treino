@@ -31,10 +31,10 @@ class Route extends Bootstrap{
             'controller'=> 'AnimeController',
             'action' => 'index'
         ];
-        $routes['anime-genero'] = [
+        $routes['anime-show'] = [
             'path' => '/anime/{}',
             'controller'=> 'AnimeController',
-            'action' => 'genero'
+            'action' => 'show'
         ];
         $routes['pesquisar'] = [
             'path' => '/pesquisar',

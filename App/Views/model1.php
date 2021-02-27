@@ -32,7 +32,7 @@
             <!--Animes-->
             <div class="area-animes">
                 <?php $posicao = 1; foreach($this->view->animes as $anime){ ?>
-                    <a class="anime" href="#">
+                    <a class="anime" href="<?php echo '/anime/'.$anime['slug'] ?>">
                         <div class="cabecalho">
                             <img src="<?php echo $anime['foto'] ?>" alt="">
                         </div>

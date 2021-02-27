@@ -25,90 +25,14 @@
             Ongoing Animes
         </div>
         <div class="nomes-container">
-            <div class="body">
-                <span  class="mensagem">Shingeki no Kyojin Shingeki </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Boruto</span>
-            </div> 
-            <div class="body">
-                <span  class="mensagem">Kimetsu no Yaiba </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Jujutsu Kaisen</span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Horimiya </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
-            <div class="body">
-                <span  class="mensagem">Mushuko Tensei </span>
-            </div>
+            <?php
+                $animes = (new \App\Models\Anime(\App\Connection::getDb()))->read("where status = 'andamento'");
+                foreach($animes as $anime){
+            ?>
+                <div class="body">
+                    <a  class="mensagem" href="/anime/<?php echo $anime['slug'] ?>"><?php echo $anime['nome'] ?> </a>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div> 

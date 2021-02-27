@@ -10,7 +10,10 @@ class CategoriaController extends Action{
 
     public function index(){
         $categoria = new Categoria(Connection::getDb());
-        $this->view->categorias = $categoria->read();
+        $this->view->dados = $categoria->read();
+        $this->view->opcao = '/categoria/';
+        $this->view->titulo = "Categorias";
+
         $this->render('model2','layout');
     }
     public function show($genero){

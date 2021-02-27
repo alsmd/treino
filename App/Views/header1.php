@@ -1,4 +1,4 @@
-<header>
+<header class="border">
     <nav class="navbar">
         <div class="left">
             <a href="/" class="brand"></a>

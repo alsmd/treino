@@ -2,11 +2,11 @@
 <main>
     <div class="area-principal">
         <div class="titulo">
-            Categorias
+            <?php echo $this->view->titulo; ?>
         </div>
         <div class="animes">
-            <?php foreach($this->view->categorias as $categoria){ ?>
-                <a class="anime" href="/categoria/<?php echo $categoria['slug']; ?>"><?php echo $categoria['nome']; ?> (5)</a>
+            <?php foreach($this->view->dados as $dado){ ?>
+                <a class="anime" href="<?php echo $this->view->opcao.$dado['slug']; ?>"><?php echo $dado['nome']; ?> </a>
             <?php } ?>
         </div>
     </div>
