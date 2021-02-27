@@ -11,7 +11,7 @@
                 <input type="hidden" name="id" value="<?php echo $this->view->anime['id'] ?>">
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" name="nome" id="nome" value="<?php echo $this->view->anime['nome'] ?>">
+                    <input type="text" name="nome" id="nome" value="<?php echo $this->view->anime['nome'] ?>" required>
                     <?php if(isset($_GET['nome'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['nome']; ?></p>
                     <?php }?>
@@ -25,29 +25,29 @@
                 </div>
                 <div class="form-group">
                     <label for="slug">Slug</label>
-                    <input type="text" name="slug" id="slug" value="<?php echo $this->view->anime['slug'] ?>">
+                    <input type="text" name="slug" id="slug" value="<?php echo $this->view->anime['slug'] ?>" required>
                     <?php if(isset($_GET['slug'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['slug']; ?></p>
                     <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto</label>
-                    <input type="url" name="foto" id="foto" placeholder="Em formato http://www." value="<?php echo $this->view->anime['foto'] ?>">
+                    <input type="url" name="foto" id="foto" placeholder="Em formato http://www." value="<?php echo $this->view->anime['foto'] ?>" required>
                     <?php if(isset($_GET['foto'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['foto']; ?></p>
                     <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="foto">Status</label>
-                    <select name="status" id="" value="<?php echo $this->view->anime['status'] ?>">
-                        <option value="andamento">Em andamento</option>
-                        <option value="cancelado">Cancelado</option>
-                        <option value="finalizado">Finalizado</option>
+                    <select name="status" id="">
+                        <option value="andamento" <?php if($this->view->anime['status'] == 'andamento') echo 'selected' ?>>Em andamento</option>
+                        <option value="cancelado" <?php if($this->view->anime['status'] == 'cancelado') echo 'selected' ?>>Cancelado</option>
+                        <option value="finalizado" <?php if($this->view->anime['status'] == 'finalizado') echo 'selected' ?>>Finalizado</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="foto">Descricao</label>
-                    <textarea id="" cols="30" rows="10" name="descricao"><?php echo $this->view->anime['descricao'] ?></textarea>
+                    <textarea id="" cols="30" rows="10" name="descricao" required><?php echo $this->view->anime['descricao'] ?></textarea>
                     <?php if(isset($_GET['descricao'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['descricao']; ?></p>
                     <?php }?>

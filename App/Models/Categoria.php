@@ -24,7 +24,13 @@ class Categoria extends Container{
     */
     public function getAnimeByCat(){
         $qnt_per_page = 8;
-        $id_categoria = $this->read("WHERE slug = :slug",['slug'=>$this->slug])[0]['id'];
+        $id_categoria = $this->read("WHERE slug = :slug",['slug'=>$this->slug]);
+        if(count($id_categoria)){
+            $id_categoria= $id_categoria[0]['id'];
+        }else{
+            echo 'Categoria Não existe';
+            die();
+        }
         $query = "
             SELECT
             anime.*

@@ -10,7 +10,7 @@
             <form action="/admin/anime/save" method="POST">
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" name="nome" id="nome">
+                    <input type="text" name="nome" id="nome" required>
                     <?php if(isset($_GET['nome'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['nome']; ?></p>
                     <?php }?>
@@ -24,14 +24,14 @@
                 </div>
                 <div class="form-group">
                     <label for="slug">Slug</label>
-                    <input type="text" name="slug" id="slug">
+                    <input type="text" name="slug" id="slug" required>
                     <?php if(isset($_GET['slug'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['slug']; ?></p>
                     <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto</label>
-                    <input type="url" name="foto" id="foto" placeholder="Em formato http://www.">
+                    <input type="url" name="foto" id="foto" placeholder="Em formato http://www." required>
                     <?php if(isset($_GET['foto'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['foto']; ?></p>
                     <?php }?>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="foto">Descricao</label>
-                    <textarea id="" cols="30" rows="10" name="descricao"></textarea>
+                    <textarea id="" cols="30" rows="10" name="descricao" required></textarea>
                     <?php if(isset($_GET['descricao'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['descricao']; ?></p>
                     <?php }?>

@@ -6,7 +6,7 @@
         </div>
         <div class="animes">
             <?php foreach($this->view->categorias as $categoria){ ?>
-                <a class="anime" href="categoria/<?php echo $categoria['slug']; ?>"><?php echo $categoria['nome']; ?> (5)</a>
+                <a class="anime" href="/categoria/<?php echo $categoria['slug']; ?>"><?php echo $categoria['nome']; ?> (5)</a>
             <?php } ?>
         </div>
     </div>

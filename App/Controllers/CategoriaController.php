@@ -45,6 +45,7 @@ class CategoriaController extends Action{
             "nome" => 3,
             "slug" => 3
         ];
+        $dados = $this->retirarEspacos($dados);
         $redirecionamento = "/admin/categoria/gerenciar";
         //verifica se os dados estão com a formatação correta, caso não esteja sera redirecionado
         $this->verificarDados($dados,$requer,$redirecionamento);
@@ -59,9 +60,11 @@ class CategoriaController extends Action{
     }
     public function update(){
         $id = $_POST['id'];
-        unset($_POST['id']);
+        $dados = $_POST;
+        $dados = $this->retirarEspacos($dados);
+        unset($dados['id']);
         $categoria = new Categoria(Connection::getDb());
-        $retorno = $categoria->update($_POST,$id);
+        $retorno = $categoria->update($dados,$id);
         if($retorno){
             $mensagem = "Categoria Atualizada Com Sucesso!";
         }else{
