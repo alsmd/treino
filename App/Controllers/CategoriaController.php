@@ -49,8 +49,8 @@ class CategoriaController extends Action{
             "slug" => 3
         ];
         $dados = $this->retirarEspacos($dados);
-        $redirecionamento = "/admin/categoria/gerenciar";
         //verifica se os dados estão com a formatação correta, caso não esteja sera redirecionado
+        $redirecionamento = "/admin/categoria/gerenciar";
         $this->verificarDados($dados,$requer,$redirecionamento);
         $categoria = new Categoria(Connection::getDb());
         $retorno = $categoria->create($_POST);

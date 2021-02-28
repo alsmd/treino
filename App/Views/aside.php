@@ -26,6 +26,7 @@
         </div>
         <div class="nomes-container">
             <?php
+                //lista todos os animes que estão em andamento
                 $animes = (new \App\Models\Anime(\App\Connection::getDb()))->read("where status = 'andamento'");
                 foreach($animes as $anime){
             ?>

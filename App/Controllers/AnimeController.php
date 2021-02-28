@@ -24,7 +24,7 @@ class AnimeController extends Action{
         $slug = $slug[2];
         $anime_class = new Anime(Connection::getDB());
         $this->view->anime = $anime_class->read('where slug = :slug',compact('slug'))[0];
-        $this->view->categorias = $anime_class->query("SELECT categoria.nome,categoria.slug FROM anime_categoria RIGHT JOIN categoria on(categoria.id = anime_categoria.fk_id_categoria) WHERE anime_categoria.fk_id_anime = :id_anime")->runQuery(['id_anime'=>$this->view->anime['id']]);
+        $this->view->categorias = $anime_class->getCatsByAnime($this->view->anime['id']);
         $this->render('anime.show','layout');
     }
 
@@ -65,8 +65,8 @@ class AnimeController extends Action{
             "descricao" => 10,
             "foto" =>5
         ];
-        $redirecionamento = "/admin/anime/gerenciar";
         //verifica se os dados estão com a formatação correta, caso não esteja sera redirecionado
+        $redirecionamento = "/admin/anime/gerenciar";
         $this->verificarDados($dados,$requer,$redirecionamento);
         $anime = new Anime(Connection::getDb());
         $retorno = $anime->create($dados);

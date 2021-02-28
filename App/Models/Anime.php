@@ -42,4 +42,18 @@ class Anime extends Container{
         return $animes;
     }
 
+
+    /*
+    @return categorias relacionadas a um anime
+    */
+    public function getCatsByAnime($id){
+        $query = "SELECT
+            categoria.nome,categoria.slug 
+            FROM
+            anime_categoria RIGHT JOIN categoria on(categoria.id = anime_categoria.fk_id_categoria)
+            WHERE anime_categoria.fk_id_anime = :id_anime";
+        return $this->query($query)->runQuery(['id_anime'=>$id]);
+        
+        
+    }
 }
