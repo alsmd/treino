@@ -55,7 +55,7 @@ class AnimeController extends Action{
         $this->render('admin','layout');
     }
     public function save(){
-        $dados = $_POST;
+        $dados = $this->retirarEspacos($_POST);
         $categorias = $_POST['categorias'];
         unset($dados['categorias']);
         $requer = [
@@ -89,19 +89,17 @@ class AnimeController extends Action{
 
     }
     public function update(){
-        $dados = $_POST;
-        $categorias = $_POST['categorias'];
-        $id = $_POST['id'];
-        unset($dados['categorias']);
+        $dados = $this->retirarEspacos($_POST);
+        if(isset($_POST['categorias'])){
+            $categorias = $_POST['categorias'];
+            unset($dados['categorias']);
+        }else{
+            $categorias = [];
+        }
+        $id = $dados['id'];
         unset($dados['id']);
         $anime = new Anime(Connection::getDb());
         $retorno = $anime->update($dados,$id);
-        //verifica se o anime foi atualizado
-        if($retorno > 0 ){
-            $mensagem = "Anime Atualizado com sucesso";
-        }else{
-            $mensagem = "Houve um erro ao atualizar anime";
-        }
         /*Apaga a relaão com categoria e cria uma nova */
         $anime->query("DELETE FROM anime_categoria WHERE fk_id_anime = :anime_id")->runQuery(['anime_id'=>$id],2);
         $sucesso = 0;
@@ -110,6 +108,11 @@ class AnimeController extends Action{
         }
         if($sucesso){
             $mensagem = "Anime Atualizado com sucesso";
+        }
+        //verifica se houve um erro ao atualizar anime
+        if($retorno == 0 ){
+            if($sucesso ==0)
+                $mensagem = "Houve um erro ao atualizar anime";
         }
         header("Location:/admin/anime/gerenciar?mensagem=$mensagem");
     }
