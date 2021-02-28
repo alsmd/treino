@@ -7,7 +7,7 @@
     <?php }?>
     <div class="body">
         <div class="col-1">
-            <form action="/admin/anime/save" method="POST">
+            <form action="/admin/anime/save" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" id="nome" required>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto</label>
-                    <input type="url" name="foto" id="foto" placeholder="Em formato http://www." required>
+                    <input type="file" name="foto" id="foto" placeholder="" required>
                     <?php if(isset($_GET['foto'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['foto']; ?></p>
                     <?php }?>

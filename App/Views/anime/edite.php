@@ -7,7 +7,7 @@
     <?php }?>
     <div class="body">
         <div class="col-1">
-            <form action="/admin/anime/update" method="POST">
+            <form action="/admin/anime/update" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $this->view->anime['id'] ?>">
                 <div class="form-group">
                     <label for="nome">Nome</label>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto</label>
-                    <input type="url" name="foto" id="foto" placeholder="Em formato http://www." value="<?php echo $this->view->anime['foto'] ?>" required>
+                    <input type="file" name="foto" id="foto">
                     <?php if(isset($_GET['foto'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['foto']; ?></p>
                     <?php }?>

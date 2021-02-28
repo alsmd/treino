@@ -3,7 +3,7 @@
     <div class="area-principal border">
         <div class="superior border" style="border-top: none !important;">
             <div class="area-imagem">
-                <img src="<?php echo $this->view->anime['foto'] ?>" alt="">
+                <img src="http://www.localhost:8080/<?php echo $this->view->anime['foto'] ?>" alt="">
             </div>
             <div class="descricao">
                <h3><?php echo $this->view->anime['nome'] ?></h3>

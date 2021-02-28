@@ -56,6 +56,16 @@ class AnimeController extends Action{
     }
     public function save(){
         $dados = $this->retirarEspacos($_POST);
+        //salvando foto
+        $extensao = str_replace('image/','.',$_FILES['foto']['type']);
+        $name = str_replace(' ','-',$dados['nome']);
+        $destino = 'fotos/'.$name.$extensao;
+        $tmp_name = $_FILES['foto']['tmp_name'];
+        if(move_uploaded_file($tmp_name,$destino)){
+            $dados['foto'] = $destino;
+        }else{
+            $dados['foto'] = 'fotos/padrao.png';
+        }
         $categorias = $_POST['categorias'];
         unset($dados['categorias']);
         $requer = [
@@ -63,11 +73,11 @@ class AnimeController extends Action{
             "slug" => 3,
             "nome_alternativo" =>3,
             "descricao" => 10,
-            "foto" =>5
+            "foto" =>3
         ];
         //verifica se os dados estão com a formatação correta, caso não esteja sera redirecionado
         $redirecionamento = "/admin/anime/gerenciar";
-        $this->verificarDados($dados,$requer,$redirecionamento);
+        //$this->verificarDados($dados,$requer,$redirecionamento);
         $anime = new Anime(Connection::getDb());
         $retorno = $anime->create($dados);
         //caso o anime tenha sido criado com sucesso iremos tentar vincular com as categorias
@@ -82,6 +92,8 @@ class AnimeController extends Action{
             }else{
                 $mensagem = "Anime criado com sucesso, mas houve um erro ao vincular categorias";
             }
+
+
         }else{
             $mensagem = "Houve um erro ao criar anime";
         }
@@ -90,6 +102,7 @@ class AnimeController extends Action{
     }
     public function update(){
         $dados = $this->retirarEspacos($_POST);
+        $img = false;
         if(isset($_POST['categorias'])){
             $categorias = $_POST['categorias'];
             unset($dados['categorias']);
@@ -99,6 +112,23 @@ class AnimeController extends Action{
         $id = $dados['id'];
         unset($dados['id']);
         $anime = new Anime(Connection::getDb());
+        //salvando foto
+        if($_FILES['foto']['name'] != ''){
+            $foto_name = $anime->query('select foto from anime where id = :id')->runQuery(['id'=>$id])[0]['foto'];
+            if(file_exists($foto_name))
+                unlink($foto_name);
+            $extensao = str_replace('image/','.',$_FILES['foto']['type']);
+            $name = str_replace(' ','-',$dados['nome']);
+            $destino = 'fotos/'.$name.$extensao;
+            $tmp_name = $_FILES['foto']['tmp_name'];
+            if(move_uploaded_file($tmp_name,$destino)){
+                $dados['foto'] = $destino;
+                $img = true;
+                $mensagem = 'Anime Atualizado com sucesso';
+            }
+        }else{
+            unset($dados['foto']);
+        }
         $retorno = $anime->update($dados,$id);
         /*Apaga a relaão com categoria e cria uma nova */
         $anime->query("DELETE FROM anime_categoria WHERE fk_id_anime = :anime_id")->runQuery(['anime_id'=>$id],2);
@@ -106,12 +136,12 @@ class AnimeController extends Action{
         foreach($categorias as $categoria){
             $sucesso += $anime->query("INSERT INTO anime_categoria(fk_id_categoria,fk_id_anime)VALUES(:id_categoria,:id_anime)")->runQuery(['id_categoria'=>$categoria,'id_anime'=>$id],2);
         }
-        if($sucesso){
+        if($retorno){
             $mensagem = "Anime Atualizado com sucesso";
         }
         //verifica se houve um erro ao atualizar anime
         if($retorno == 0 ){
-            if($sucesso ==0)
+            if($sucesso ==0 && $img ==false)
                 $mensagem = "Houve um erro ao atualizar anime";
         }
         header("Location:/admin/anime/gerenciar?mensagem=$mensagem");

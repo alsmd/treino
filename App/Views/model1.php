@@ -34,7 +34,7 @@
                 <?php $posicao = 1; foreach($this->view->animes as $anime){ ?>
                     <a class="anime" href="<?php echo '/anime/'.$anime['slug'] ?>">
                         <div class="cabecalho">
-                            <img src="<?php echo $anime['foto'] ?>" alt="">
+                            <img src="http://www.localhost:8080/<?php echo $anime['foto'] ?>" alt="">
                         </div>
                         <div class="body">
                             <p class="nome"><?php echo $posicao ?>º <?php echo $anime['nome'] ?></p>
