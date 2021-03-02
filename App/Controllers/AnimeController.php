@@ -139,7 +139,7 @@ class AnimeController extends Action{
         if($retorno){
             $mensagem = "Anime Atualizado com sucesso";
         }
-        //verifica se houve um erro ao atualizar anime
+        //verifica se houve um erro ao atualizar anime, caso a tentativa de atualizar todos os componentes for 0(false) a mensagem sera de erro
         if($retorno == 0 ){
             if($sucesso ==0 && $img ==false)
                 $mensagem = "Houve um erro ao atualizar anime";

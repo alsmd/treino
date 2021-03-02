@@ -46,7 +46,7 @@ main{
     grid-template-columns: 3fr 1fr;
     width: 1300px;
     margin: .7em auto;
-    gap: 1.2em;
+    gap: 1em;
 }
 .white{
     color: var(--white) !important;

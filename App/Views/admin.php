@@ -57,7 +57,7 @@
             </div>
             <div class="nomes-container">
                 <div class="body">
-                    <a  class="mensagem">Dashbord</a>
+                    <a  class="mensagem" href="/admin">Dashbord</a>
                 </div>
                 <div class="body dropdown">
                     <a  class="mensagem dropdown-toggler">Animes <i class="fas fa-caret-down"></i></a>

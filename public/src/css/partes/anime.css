@@ -1,5 +1,7 @@
 main{
     margin: 0 auto;
+    border-bottom: 1px solid var(--gray) !important;
+    box-shadow: 0px 0 .5px 0 var(--white) !important;
 }
 .area-principal{
     color: white;
@@ -20,16 +22,73 @@ main{
 }
 .area-imagem img{
     min-height: 400px;
+    max-height: 500px;
 }
 .categoria{
     color: var(--red);
 }
 .categoria:hover{
     color: var(--white);
+}
+/*Ep*/
+.ep_background{
+    width: 80.25px;
+    height: 80.25px;
+    background: url('https://animekisa.tv/img/ah_play_transparent.png');
+    background-size:cover ;
+    background-position: center;
+    float: left;
+}
+.ep_background:hover{
+    border: 1px solid var(--gray) !important;
+}
+.ep{
+    background: #121212;
+    width: 80.25px;
+    height: 80.25px;
+    font-size: .6em;
+    text-align: center;
+    padding: .4em 0;
+    border-collapse: collapse;
+}
+.ep .cabecalho, .ep .footer{
+    font-family: 'Source Sans Pro', sans-serif; 
+    font-weight: 300;
+}
+.ep .body{
+    font-size: 4em;
+    font-weight: 500;
+    font-family: 'DotGothic16', sans-serif; 
 
+}
+.ep:hover{
+    cursor: pointer;
+    opacity: 0;
+}
+/*medias*/
+@media(max-width: 1340px){
+    .ep_background{
+        width: 80px;
+        height: 80px;
+    }
+    .ep{
+        width: 80px;
+        height: 80px;
+    }
+}
+@media(max-width:1000px){
 }
 @media(max-width:690px){
     .superior{
         grid-template-columns: 1fr;
+    }
+    .ep_background{
+        width: 79.75px;
+        height: 79.75px;
+
+    }
+    .ep{
+        width: 79.75px;
+        height: 79.75px;
     }
 }

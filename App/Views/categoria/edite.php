@@ -31,7 +31,7 @@
             <div class="item border">
                 <a class="slug" href="<?php echo '/categoria/'.$categoria['slug'] ?>" target="_blank"><?php echo $categoria['nome'] ?></a>
                 <div class="links">
-                    <form action="/admin/categoria/update" method="POST">
+                    <form action="/admin/categoria/edite" method="POST">
                         <input type="hidden" name="id" value="<?php echo $categoria['id']; ?>">
                         <button class="edite" type="submit">edite</button>
                     </form>
