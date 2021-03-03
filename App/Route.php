@@ -41,6 +41,11 @@ class Route extends Bootstrap{
             'controller'=> 'AnimeController',
             'action' => 'search'
         ];
+        $routes['anime-show-episodio'] = [
+            'path' => '/anime/{}/{}',
+            'controller'=> 'AnimeController',
+            'action' => 'showEpisodio'
+        ];
         /*Area Administrativa*/
         $routes['admin'] = [
             'path' => '/admin',

@@ -1,0 +1,88 @@
+main.episodio{
+    width: 1000px;
+    display: block !important;
+}
+main.episodio .cabecalho h3{
+    text-align: center;
+}
+main.episodio .cabecalho h3 a {
+    color: var(--red);
+}
+main.episodio .cabecalho .nav {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+main.episodio .cabecalho .nav .server{
+    position: absolute;
+    left: .7em;
+}
+main.episodio .cabecalho .nav .episodios{
+    display: inline-block;
+    margin: 0 auto;
+}
+
+main.episodio .cabecalho h3 a:hover{
+    color: white;
+    cursor: pointer;
+}
+main.episodio .cabecalho .nav select{
+    border: none;
+    outline: 0;
+    padding: .7em 3em .7em 1em;
+    background: #333 url('https://animekisa.tv/img/ah_select.png') right no-repeat;
+    background-size: 40px 40px;
+    color: white;
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+}
+main.episodio .cabecalho .nav select:hover{
+    opacity:.8;
+}
+main.episodio .content {
+    height: 600px;
+    margin-top: 1em;
+}
+main.episodio .content iframe{
+    width: 100%;
+}
+main.episodio .footer{
+    background: var(--gray);
+    color: white;
+    border-radius: 2em;
+    padding: 1em 3em;
+}
+main.episodio .footer .titulo{
+    color: var(--red);
+}
+@media(max-width:1340px){
+    main.episodio{
+        width: 940px;
+    }
+}
+@media(max-width: 960px){
+    main.episodio{
+        width: 640px;
+    }
+    main.episodio .content {
+        height: 360px;
+    }
+}
+@media(max-width: 690px){
+    main.episodio{
+        width: 97%;
+    }
+    main.episodio .cabecalho .nav{
+        display: flex;
+        justify-content: center;
+    }
+    main.episodio .cabecalho .nav .server{
+        position: unset;
+        margin-right: 1em;
+    }
+    main.episodio .cabecalho .nav .episodios{
+        display: inline-block;
+        margin: 0 ;
+    }
+}

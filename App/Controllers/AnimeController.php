@@ -22,10 +22,13 @@ class AnimeController extends Action{
         $this->render('model1','layout');
     }
     public function show($slug){
+        $episodio = new Episodio(Connection::getDb());
         $slug = $slug[2];
         $anime_class = new Anime(Connection::getDB());
         $this->view->anime = $anime_class->read('where slug = :slug',compact('slug'))[0];
         $this->view->categorias = $anime_class->getCatsByAnime($this->view->anime['id']);
+        $this->view->episodios = $episodio->read('WHERE fk_id_anime = :fk_id_anime ORDER BY episodio DESC',['fk_id_anime'=>$this->view->anime['id']]);
+
         $this->render('anime.show','layout');
     }
 
@@ -184,5 +187,13 @@ class AnimeController extends Action{
             $mensagem = "Houve Um Erro Ao Apagar Episodio!";
         }
         header("Location:/admin/anime/gerenciar?mensagem=$mensagem");
+    }
+
+    public function showEpisodio($parametros){
+        $anime = $parametros[2];
+        $episodio = $parametros[3];
+        $this->view->anime = (new Anime(Connection::getDb()))->read('where slug = :slug',['slug'=> $anime])[0];
+        $this->view->episodio = (new Episodio(Connection::getDB()))->read('where episodio = :episodio AND fk_id_anime = :fk_id_anime',['episodio'=>$episodio,'fk_id_anime'=>$this->view->anime['id']])[0];
+        $this->render('anime.episodio.show','layout');
     }
 }
