@@ -3,6 +3,7 @@ namespace App\Controllers;
 use MF\Controller\Action;
 use App\Models\Anime;
 use App\Models\Categoria;
+use App\Models\Episodio;
 use \App\Connection;
 
 class AnimeController extends Action{
@@ -39,6 +40,7 @@ class AnimeController extends Action{
     }
 
     public function edite(){
+        $episodio = new Episodio(Connection::getDb());
         $anime_class = new Anime(Connection::getDB());
         $categorias = new Categoria(Connection::getDB());
         $this->view->animes = $anime_class->read();
@@ -50,6 +52,8 @@ class AnimeController extends Action{
         $this->view->categorias_usadas = array_map(function($categoria_usada){
             return $categoria_usada['fk_id_categoria'];
         },$categorias_usadas);
+        /*episodios*/
+        $this->view->episodios = $episodio->read('WHERE fk_id_anime = :fk_id_anime',['fk_id_anime'=>$this->view->anime['id']]);
         /*paginação atual do admin*/
         $this->view->adminPageAtual = 'anime.edite';
         $this->render('admin','layout');
@@ -159,5 +163,26 @@ class AnimeController extends Action{
         header("Location:/admin/anime/gerenciar?mensagem=$mensagem");
     }
 
+    public function saveEpisodio(){
+        $episodio = new Episodio(Connection::getDB());
+        $retorno = $episodio->create($_POST);
+        if($retorno){
+            $mensagem = "Episodio Adicionado com Sucesso!";
+        }else{
+            $mensagem = "Houve Um Erro Ao Adicionar Episodio!";
+        }
+        header("Location:/admin/anime/gerenciar?mensagem=$mensagem");
+    }
 
+
+    public function deleteEpisodio(){
+        $episodio = new Episodio(Connection::getDB());
+        $retorno = $episodio->query("DELETE FROM episodio WHERE episodio = :episodio AND fk_id_anime = :fk_id_anime")->runQuery(['fk_id_anime'=>$_POST['fk_id_anime'], 'episodio' => $_POST['episodio']],2);
+        if($retorno){
+            $mensagem = "Episodio Apagado com Sucesso!";
+        }else{
+            $mensagem = "Houve Um Erro Ao Apagar Episodio!";
+        }
+        header("Location:/admin/anime/gerenciar?mensagem=$mensagem");
+    }
 }

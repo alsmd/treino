@@ -61,7 +61,7 @@
                         <?php } ?>
                     </div>
                 </div>
-                <button type="submit" class="submit">Criar</button>
+                <button type="submit" class="submit btn-green">Criar</button>
             </form>
         </div>
         <div class="col-2">

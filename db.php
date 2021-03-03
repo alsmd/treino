@@ -37,8 +37,19 @@ $table_anime_categoria = "
             fk_id_anime int,
             fk_id_categoria int
         );
-        ALTER TABLE anime_categoria ADD CONSTRAINT fk_anime_categoria FOREIGN KEY(fk_id_anime) REFERENCES anime(id);
-        ALTER TABLE anime_categoria ADD CONSTRAINT fk_categoria_anime FOREIGN KEY(fk_id_categoria) REFERENCES categoria(id);
+        ALTER TABLE anime_categoria ADD CONSTRAINT fk_anime_categoria FOREIGN KEY(fk_id_anime) REFERENCES anime(id) ON DELETE CASCADE;
+        ALTER TABLE anime_categoria ADD CONSTRAINT fk_categoria_anime FOREIGN KEY(fk_id_categoria) REFERENCES categoria(id) ON DELETE CASCADE;
+";
+$table_episodio = "
+        DROP TABLE IF EXISTS episodio;
+        CREATE TABLE IF NOT EXISTS episodio(
+            id int primary key auto_increment,
+            fk_id_anime int,
+            titulo varchar(200),
+            link varchar(200),
+            episodio int
+        );
+        ALTER TABLE episodio ADD CONSTRAINT fk_anime_episodio FOREIGN KEY(fk_id_anime) REFERENCES anime(id) ON DELETE CASCADE;
 ";
 /*
     Dropando todas tabelas
@@ -47,6 +58,7 @@ $table_anime_categoria = "
 $drop = "
     DROP TABLE IF EXISTS anime_categoria;
     DROP TABLE IF EXISTS categoria;
+    DROP TABLE IF EXISTS episodio;
     DROP TABLE IF EXISTS anime;
 ";
 try{
@@ -67,6 +79,9 @@ try{
     $prepare->execute();
     echo $prepare->errorInfo()[1]. '--'.$prepare->errorInfo()[2];
     $prepare = $db->prepare($table_anime_categoria);
+    $prepare->execute();
+    echo $prepare->errorInfo()[1]. '--'.$prepare->errorInfo()[2];
+    $prepare = $db->prepare($table_episodio);
     $prepare->execute();
     echo $prepare->errorInfo()[1]. '--'.$prepare->errorInfo()[2];
 }catch(\PDOException $e){

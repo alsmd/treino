@@ -22,7 +22,7 @@
                         <p style="color:var(--red)"><?php echo $_GET['slug']; ?></p>
                     <?php }?>
                 </div>
-                <button type="submit" class="submit">Criar</button>
+                <button type="submit" class="submit btn-green">Criar</button>
             </form>
         </div>
         <div class="col-2">
@@ -36,7 +36,7 @@
                     </form>
                     <form action="/admin/categoria/delete" method="POST">
                         <input type="hidden" name="id" value="<?php echo $categoria['id']; ?>">
-                        <button class="remove" type="submit">delete</button>
+                        <button class="remove" type="submit delete">delete</button>
                     </form>
                 </div>
             </div>

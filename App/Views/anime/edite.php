@@ -62,25 +62,67 @@
                         <?php } ?>
                     </div>
                 </div>
-                <button type="submit" class="submit">Edite</button>
+                <button type="submit" class="submit btn-blue">Edite</button>
             </form>
         </div>
-        <div class="col-2">
-        <?php foreach($this->view->animes as $anime){ ?>
-            <div class="item border">
-                <a class="slug" href="<?php echo '/anime/'.$anime['slug'] ?>" target="_blank"><?php echo $anime['nome'] ?></a>
-                <div class="links">
-                    <form action="/admin/anime/edite" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $anime['id']; ?>">
-                        <button class="edite" type="submit">edite</button>
-                    </form>
-                    <form action="/admin/anime/delete" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $anime['id']; ?>">
-                        <button class="remove" type="submit">delete</button>
-                    </form>
-                </div>
+
+
+        <div>
+            <div class="col-2">
+                <?php foreach($this->view->animes as $anime){ ?>
+                    <div class="item border">
+                        <a class="slug" href="<?php echo '/anime/'.$anime['slug'] ?>" target="_blank"><?php echo $anime['nome'] ?></a>
+                        <div class="links">
+                            <form action="/admin/anime/edite" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $anime['id']; ?>">
+                                <button class="edite" type="submit">edite</button>
+                            </form>
+                            <form action="/admin/anime/delete" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $anime['id']; ?>">
+                                <button class="remove" type="submit">delete</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php }?>
             </div>
-        <?php }?>
+            <div class="">
+                <h2 class='white' style="margin-top:2.5em;margin-bottom:.5em;text-align:center;">Adicionar Episodio</h2>
+                <form action="/admin/anime/saveEpisodio" method="POST">
+                    <div class="form-group">
+                        <label for="titulo">Titulo</label>
+                        <input type="text" name="titulo" id="titulo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="episodio">Numero</label>
+                        <input type="text" name="episodio" id="episodio" required min>
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Link</label>
+                        <input type="text" name="link" id="link" required min>
+                    </div>
+                    <input type="hidden" name="fk_id_anime" value="<?php echo $this->view->anime['id'] ?>">
+                    <button type="submit" class="submit btn-green">Criar</button>
+                </form>
+            </div>
+
+            <div class="">
+                <h2 class='white' style="margin-top:1.5em;margin-bottom:.5em;text-align:center;">Deletar Episodio</h2>
+                <form action="/admin/anime/deleteEpisodio" method="POST">
+                    <div class="form-group">
+                        <label for="episodio">Numero</label>
+                        <select name="episodio" id="">
+                            <?php foreach($this->view->episodios as $episodio){ ?>
+                            <option value="<?php echo $episodio['episodio']; ?>"><?php echo $episodio['episodio']; ?></option>
+                            <?php } ?>
+                        </select>
+                        
+                    </div>
+                    <input type="hidden" name="fk_id_anime" value="<?php echo $this->view->anime['id'] ?>">
+                    <button type="submit" class="submit btn-red">Deletar</button>
+                </form>
+            </div>
         </div>
+
+
     </div>
 </div>

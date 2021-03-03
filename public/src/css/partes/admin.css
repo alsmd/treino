@@ -125,6 +125,15 @@ main{
     border-radius: .5em;
     transition: .5s;
 }
+.btn-blue{
+    background: linear-gradient(var(--light-blue),var(--blue)) !important;
+}
+.btn-red{
+    background: linear-gradient(var(--light-red),var(--orange)) !important;
+}
+.btn-green{
+    background: linear-gradient(rgb(19, 172, 37),rgb(10, 116, 22)) !important;
+}
 .pag-principal .body form .submit:hover{
     opacity: .8;
     cursor: pointer;
@@ -212,6 +221,13 @@ main{
     .area-lateral{
         display: none;
     }
+    .pag-principal .body{
+        grid-template-columns: 1fr;
+    }
+    .pag-principal .body .col-2,.pag-principal .body .col-1{
+        margin-bottom: 3em;
+    }
+
 }
 @media(min-width:1340px){
     #menu{
