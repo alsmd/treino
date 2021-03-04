@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="content">
-        <iframe src="//gogo-play.net/streaming.php?id=MTUzNzEy&amp;title=Gekidol&amp;typesub=SUB&amp;sub=&amp;cover=Y292ZXIvZ2VraWRvbC5wbmc=" allowfullscreen="true" frameborder="0"  scrolling="no" width="100%" height="100%"></iframe>
+        <iframe src="<?php echo $this->view->episodio['link'] ?>" allowfullscreen="true" frameborder="0"  scrolling="no" width="100%" height="100%"></iframe>
     </div>
     <div class="footer">
         <span class="titulo">title: </span> <?php echo $this->view->episodio['titulo'] ?>
