@@ -11,30 +11,18 @@
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" id="nome" required>
-                    <?php if(isset($_GET['nome'])){?>
-                        <p style="color:var(--red)"><?php echo $_GET['nome']; ?></p>
-                    <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="nome_alternativo">Nome Alternativo</label>
                     <input type="text" name="nome_alternativo" id="nome_alternativo">
-                    <?php if(isset($_GET['nome_alternativo'])){?>
-                        <p style="color:var(--red)"><?php echo $_GET['nome_alternativo']; ?></p>
-                    <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="slug">Slug</label>
                     <input type="text" name="slug" id="slug" required>
-                    <?php if(isset($_GET['slug'])){?>
-                        <p style="color:var(--red)"><?php echo $_GET['slug']; ?></p>
-                    <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto</label>
                     <input type="file" name="foto" id="foto" placeholder="" required>
-                    <?php if(isset($_GET['foto'])){?>
-                        <p style="color:var(--red)"><?php echo $_GET['foto']; ?></p>
-                    <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="foto">Status</label>
@@ -47,9 +35,6 @@
                 <div class="form-group">
                     <label for="foto">Descricao</label>
                     <textarea id="" cols="30" rows="10" name="descricao" required></textarea>
-                    <?php if(isset($_GET['descricao'])){?>
-                        <p style="color:var(--red)"><?php echo $_GET['descricao']; ?></p>
-                    <?php }?>
                 </div>
                 <div class="form-group-checkbox">
                     <label for="foto">Categorias</label>

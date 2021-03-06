@@ -8,55 +8,55 @@ use \App\Connection;
 
 class AnimeController extends Action{
     public function index(){
-        $anime = new Anime(Connection::getDb());
-        $this->view->dados = $anime->read('order by nome asc');
+        $anime = new Anime();
+        $this->view->dados = $anime->orderBy('nome','ASC')->get();
         $this->view->opcao = '/anime/';
         $this->view->titulo = "Animes";
 
         $this->render('model2','layout');
     }
     public function search(){
-        $anime_class = new Anime(Connection::getDB());
+        $anime_class = new Anime();
         $animes = $anime_class->filter($_POST['filter']);
         $this->view->animes = $animes;
         $this->render('model1','layout');
     }
     public function show($slug){
-        $episodio = new Episodio(Connection::getDb());
+        $episodio = new Episodio();
         $slug = $slug[2];
-        $anime_class = new Anime(Connection::getDB());
-        $this->view->anime = $anime_class->read('where slug = :slug',compact('slug'))[0];
-        $this->view->categorias = $anime_class->getCatsByAnime($this->view->anime['id']);
-        $this->view->episodios = $episodio->read('WHERE fk_id_anime = :fk_id_anime ORDER BY episodio DESC',['fk_id_anime'=>$this->view->anime['id']]);
+        $anime_class = new Anime();
+        $this->view->anime = $anime_class->where('slug',$slug)->first();
+        $this->view->categorias = $this->view->anime->categorias()->get();
+        $this->view->episodios =$this->view->anime->episodios()->get();
 
         $this->render('anime.show','layout');
     }
 
     /*Cruds*/
     public function gerenciar(){
-        $anime_class = new Anime(Connection::getDB());
-        $categorias = new Categoria(Connection::getDB());
-        $this->view->animes = $anime_class->read();
-        $this->view->categorias = $categorias->read();
+        $anime_class = new Anime();
+        $categorias = new Categoria();
+        $this->view->animes = $anime_class->get();
+        $this->view->categorias = $categorias->get();
         $this->view->adminPageAtual = 'anime.gerenciar';
         $this->render('admin','layout');
     }
 
     public function edite(){
-        $episodio = new Episodio(Connection::getDb());
-        $anime_class = new Anime(Connection::getDB());
-        $categorias = new Categoria(Connection::getDB());
-        $this->view->animes = $anime_class->read();
-        $this->view->anime = ($anime_class->read("where id = :id",['id'=>$_POST['id']]))[0];
-        $this->view->categorias = $categorias->read();
+        $episodio = new Episodio();
+        $anime_class = new Anime();
+        $categorias = new Categoria();
+        $this->view->animes = $anime_class->get();
+        $this->view->anime = $anime_class->find($_POST['id']);
+        $this->view->categorias = $categorias->get();
         /*recuperando categorias usadas */
-        $query = "SELECT fk_id_categoria FROM anime_categoria where fk_id_anime = :anime_id";
-        $categorias_usadas = $categorias->query($query)->runQuery(["anime_id"=>$_POST['id']]);
-        $this->view->categorias_usadas = array_map(function($categoria_usada){
-            return $categoria_usada['fk_id_categoria'];
-        },$categorias_usadas);
+        $categorias_usadas = $this->view->anime->categorias()->select('fk_id_categoria')->get();
+        $this->view->categorias_usadas = [];
+        foreach($categorias_usadas as $categoria){
+            $this->view->categorias_usadas[] = $categoria['fk_id_categoria'];
+        }
         /*episodios*/
-        $this->view->episodios = $episodio->read('WHERE fk_id_anime = :fk_id_anime',['fk_id_anime'=>$this->view->anime['id']]);
+        $this->view->episodios = $this->view->anime->episodios()->get();
         /*paginação atual do admin*/
         $this->view->adminPageAtual = 'anime.edite';
         $this->render('admin','layout');
@@ -75,32 +75,19 @@ class AnimeController extends Action{
         }
         $categorias = $_POST['categorias'];
         unset($dados['categorias']);
-        $requer = [
-            "nome" => 3,
-            "slug" => 3,
-            "nome_alternativo" =>3,
-            "descricao" => 10,
-            "foto" =>3
-        ];
-        //verifica se os dados estão com a formatação correta, caso não esteja sera redirecionado
-        $redirecionamento = "/admin/anime/gerenciar";
-        //$this->verificarDados($dados,$requer,$redirecionamento);
-        $anime = new Anime(Connection::getDb());
-        $retorno = $anime->create($dados);
-        //caso o anime tenha sido criado com sucesso iremos tentar vincular com as categorias
+        $anime = new Anime();
+        //criando anime e sincronizando com categorias
+        try{
+            $anime = $anime->create($dados);
+            $anime->categorias()->sync($categorias);
+            $retorno = true;
+        }catch(\PDOException $e){
+            $retorno = false;
+            echo "Houve um erro ao salvar arquivo". $e->getMessage();
+        }
+        //caso o anime tenha sido criado com sucesso iremos passar uma mensagem
         if($retorno){
-            $id_anime_criado = ($anime->query("SELECT id FROM anime ORDER BY id DESC LIMIT 1")->runQuery())[0]['id'];
-            $sucesso = 0;
-            foreach($categorias as $categoria){
-                $sucesso += $anime->query("INSERT INTO anime_categoria(fk_id_categoria,fk_id_anime)VALUES(:id_categoria,:id_anime)")->runQuery(['id_categoria'=>$categoria,'id_anime'=>$id_anime_criado],2);
-            }
-            if($sucesso){
-                $mensagem = "Anime criado com sucesso";
-            }else{
-                $mensagem = "Anime criado com sucesso, mas houve um erro ao vincular categorias";
-            }
-
-
+            $mensagem = "Anime criado com sucesso";
         }else{
             $mensagem = "Houve um erro ao criar anime";
         }
@@ -118,10 +105,10 @@ class AnimeController extends Action{
         }
         $id = $dados['id'];
         unset($dados['id']);
-        $anime = new Anime(Connection::getDb());
-        //salvando foto
+        $anime = Anime::find($id);
+        //salvando foto caso a mesma tenha sido trocada
         if($_FILES['foto']['name'] != ''){
-            $foto_name = $anime->query('select foto from anime where id = :id')->runQuery(['id'=>$id])[0]['foto'];
+            $foto_name = $anime['foto'];
             if(file_exists($foto_name))
                 unlink($foto_name);
             $extensao = str_replace('image/','.',$_FILES['foto']['type']);
@@ -130,34 +117,36 @@ class AnimeController extends Action{
             $tmp_name = $_FILES['foto']['tmp_name'];
             if(move_uploaded_file($tmp_name,$destino)){
                 $dados['foto'] = $destino;
-                $img = true;
-                $mensagem = 'Anime Atualizado com sucesso';
+            }else{
+                $dados['foto'] = "fotos/padrao.png";
             }
         }else{
             unset($dados['foto']);
         }
-        $retorno = $anime->update($dados,$id);
-        /*Apaga a relaão com categoria e cria uma nova */
-        $anime->query("DELETE FROM anime_categoria WHERE fk_id_anime = :anime_id")->runQuery(['anime_id'=>$id],2);
-        $sucesso = 0;
-        foreach($categorias as $categoria){
-            $sucesso += $anime->query("INSERT INTO anime_categoria(fk_id_categoria,fk_id_anime)VALUES(:id_categoria,:id_anime)")->runQuery(['id_categoria'=>$categoria,'id_anime'=>$id],2);
+        try{
+            $anime->update($dados);
+            $anime->categorias()->sync($categorias);
+            $retorno = true;
+        }catch(\PDOException $e){
+            echo "Houve um erro ao atualizar aquivo <br>". $e->getMessage();
+            $retorno = false;
         }
         if($retorno){
             $mensagem = "Anime Atualizado com sucesso";
-        }
-        //verifica se houve um erro ao atualizar anime, caso a tentativa de atualizar todos os componentes for 0(false) a mensagem sera de erro
-        if($retorno == 0 ){
-            if($sucesso ==0 && $img ==false)
-                $mensagem = "Houve um erro ao atualizar anime";
         }
         header("Location:/admin/anime/gerenciar?mensagem=$mensagem");
     }
     public function delete(){
         $id = $_POST['id'];
-        $anime = new Anime(Connection::getDb());
-        $anime->query("DELETE FROM anime_categoria WHERE fk_id_anime = :anime_id")->runQuery(['anime_id'=>$id]);
-        $retorno = $anime->delete($id);
+        $anime = Anime::find($id);
+        try{
+            $anime->categorias()->sync([]);
+            $anime->delete();
+            $retorno = true;
+        }catch(\PDOException $e){
+            echo 'Houve um problemaa ao tentar deletar arquivo <br>'.$e->getMessage();
+            $retorno = false;
+        }
         if($retorno){
             $mensagem = "Anime Apagada Com Sucesso!";
         }else{
@@ -167,8 +156,17 @@ class AnimeController extends Action{
     }
 
     public function saveEpisodio(){
-        $episodio = new Episodio(Connection::getDB());
-        $retorno = $episodio->create($_POST);
+        $dados = $_POST;
+        $anime_id = $_POST['fk_id_anime'];
+        unset($dados['id']);
+        $anime = Anime::find($anime_id);
+        try{
+            $anime->episodios()->create($dados);
+            $retorno = true;
+        }catch(\PDOException $e){
+            echo "Houve um erro ao salvar episodio <br>".$e->getMessage();
+            $retorno = false;
+        }
         if($retorno){
             $mensagem = "Episodio Adicionado com Sucesso!";
         }else{
@@ -179,8 +177,16 @@ class AnimeController extends Action{
 
 
     public function deleteEpisodio(){
-        $episodio = new Episodio(Connection::getDB());
-        $retorno = $episodio->query("DELETE FROM episodio WHERE episodio = :episodio AND fk_id_anime = :fk_id_anime")->runQuery(['fk_id_anime'=>$_POST['fk_id_anime'], 'episodio' => $_POST['episodio']],2);
+        $anime = Anime::find($_POST['fk_id_anime']);
+        $episodio = Episodio::where('episodio',$_POST['episodio'])->first();
+
+        try{
+            $episodio->delete();
+            $retorno = true;
+        }catch(\PDOException $e){
+            echo "Houve um erro ao deletar registro <br>". $e->getMessage();
+            $retorno = false;
+        }
         if($retorno){
             $mensagem = "Episodio Apagado com Sucesso!";
         }else{
@@ -192,8 +198,8 @@ class AnimeController extends Action{
     public function showEpisodio($parametros){
         $anime = $parametros[2];
         $episodio = $parametros[3];
-        $this->view->anime = (new Anime(Connection::getDb()))->read('where slug = :slug',['slug'=> $anime])[0];
-        $this->view->episodio = (new Episodio(Connection::getDB()))->read('where episodio = :episodio AND fk_id_anime = :fk_id_anime',['episodio'=>$episodio,'fk_id_anime'=>$this->view->anime['id']])[0];
+        $this->view->anime = Anime::where('slug',$anime)->first();
+        $this->view->episodio = $this->view->anime->episodios()->where('episodio',$episodio)->first();
         $this->render('anime.episodio.show','layout');
     }
 }

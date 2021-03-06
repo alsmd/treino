@@ -1,6 +1,7 @@
 {
     "require":{
-        "php":">=7"
+        "php":">=7",
+        "illuminate/database": "^8.31"
     },
     "autoload":{
         "psr-4":{

@@ -8,17 +8,17 @@
     <div class="body">
         <div class="col-1">
             <form action="/admin/categoria/update" method="POST">
-                <input type="hidden" name="id" value="<?php echo $this->view->categoria[0]['id']; ?>">
+                <input type="hidden" name="id" value="<?php echo $this->view->categoria['id']; ?>">
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" name="nome" id="nome" value="<?php echo $this->view->categoria[0]['nome'] ?>" required>
+                    <input type="text" name="nome" id="nome" value="<?php echo $this->view->categoria['nome'] ?>" required>
                     <?php if(isset($_GET['nome'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['nome']; ?></p>
                     <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="slug">Slug</label>
-                    <input type="text" name="slug" id="slug" value="<?php echo $this->view->categoria[0]['slug'] ?>" required>
+                    <input type="text" name="slug" id="slug" value="<?php echo $this->view->categoria['slug'] ?>" required>
                     <?php if(isset($_GET['slug'])){?>
                         <p style="color:var(--red)"><?php echo $_GET['slug']; ?></p>
                     <?php }?>

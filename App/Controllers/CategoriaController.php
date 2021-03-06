@@ -9,51 +9,48 @@ class CategoriaController extends Action{
 
 
     public function index(){
-        $categoria = new Categoria(Connection::getDb());
-        $this->view->dados = $categoria->read();
+        $categoria = Categoria::get();
+        $this->view->dados = $categoria;
         $this->view->opcao = '/categoria/';
         $this->view->titulo = "Categorias";
 
         $this->render('model2','layout');
     }
     public function show($genero){
-        $categoria = new Categoria(Connection::getDb());
         $slug = $genero[2];
-        $categoria->__set('slug',$slug);
-        $animes = $categoria->getAnimeByCat();
-        $this->view->animes = $animes;
+        $categoria = Categoria::where('slug',$slug)->first();
+        $this->view->animes = $categoria->animes()->get();
         $this->render('model1','layout');
     }
 
     /*CRUDS*/
 
     public function gerenciar(){
-        $categoria = new Categoria(Connection::getDb());
-        $this->view->categorias =$categoria->read();
+        $this->view->categorias =Categoria::get();
         $this->view->adminPageAtual = 'categoria.gerenciar';
         $this->render('admin','layout');
     }
 
     public function edite(){
-        $categoria = new Categoria(Connection::getDb());
-        $this->view->categorias =$categoria->read();
+        $id = $_POST['id'];
+        $categoria = new Categoria;
+        $this->view->categorias =$categoria->get();
         $this->view->adminPageAtual = 'categoria.edite';
-        $this->view->categoria = $categoria->read('where id = :id',['id'=>$_POST['id']]);
+        $this->view->categoria = $categoria->find($id);
         $this->render('admin','layout');
     }
 
     public function save(){
         $dados = $_POST;
-        $requer = [
-            "nome" => 3,
-            "slug" => 3
-        ];
         $dados = $this->retirarEspacos($dados);
-        //verifica se os dados estão com a formatação correta, caso não esteja sera redirecionado
-        $redirecionamento = "/admin/categoria/gerenciar";
-        $this->verificarDados($dados,$requer,$redirecionamento);
-        $categoria = new Categoria(Connection::getDb());
-        $retorno = $categoria->create($_POST);
+        $categoria = new Categoria;
+        try{
+            $categoria->create($_POST);
+            $retorno = true;
+        }catch(\PDOException $e){
+            echo "Houve um erro ao salvar arquivo <br>". $e->getMessage();
+            $retorno = false;
+        }
         if($retorno){
             $mensagem = "Categoria criada com sucesso";
         }else{
@@ -66,8 +63,14 @@ class CategoriaController extends Action{
         $dados = $_POST;
         $dados = $this->retirarEspacos($dados);
         unset($dados['id']);
-        $categoria = new Categoria(Connection::getDb());
-        $retorno = $categoria->update($dados,$id);
+        $categoria = Categoria::find($id);
+        try{
+            $categoria->update($dados);
+            $retorno = true;
+        }catch(\PDOException $e){
+            echo "Houve um erro ao atualizar registro <br>".$e->getMessage();
+            $retorno = false;
+        }
         if($retorno){
             $mensagem = "Categoria Atualizada Com Sucesso!";
         }else{
@@ -77,8 +80,8 @@ class CategoriaController extends Action{
     }
     public function delete(){
         $id = $_POST['id'];
-        $categoria = new Categoria(Connection::getDb());
-        $retorno = $categoria->delete($id);
+        $categoria =Categoria::find($id);
+        $retorno = $categoria->delete();
         if($retorno){
             $mensagem = "Categoria Apagada Com Sucesso!";
         }else{

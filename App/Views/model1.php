@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="http://localhost:8080/src/css/partes/selectors.css">
 <main>
     <div class="area-principal">
-        <?php if(count($this->view->animes) == 0){ ?>
+        <?php if($this->view->animes->count() == 0){ ?>
             <div class="cabecalho ">
                 <h2>Ooops... Nothing found!</h2>
             </div>
@@ -41,7 +41,7 @@
                             <p class="categorias">
                                 <?php 
                                 $x = 0;
-                                foreach($anime['categorias'] as $categorias){
+                                foreach($anime->categorias()->get() as $categorias){
                                     if($x == 0){
                                         echo ' '. $categorias['nome'];
                                     }else{

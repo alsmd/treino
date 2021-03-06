@@ -2,13 +2,12 @@
 
 namespace App\Models;
 use MF\Model\Container;
-class Episodio extends Container{
-    private $id;
+use Illuminate\Database\Eloquent\Model as Eloquent;
+class Episodio extends Eloquent{
     protected $table = "episodio";
-    protected $foto;
-    protected $query;
-    protected $columns = "(titulo,episodio,link,fk_id_anime)";
-    protected $columns_v = "(:titulo,:episodio,:link,:fk_id_anime)";
+    protected $fillable = ["episodio","link","titulo"];
+    const UPDATED_AT = null;
+    const CREATED_AT = null;
 
     /*Setters and Getters*/
     public function __set($name,$value){
@@ -18,4 +17,9 @@ class Episodio extends Container{
     public function __get($name){
         return $this->$name;
     }
+
+    /*relacionamentos*/
+    public function anime(){
+        return $this->belongsTo(Anime::class,'fk_id_anime');
+    } 
 }

@@ -68,6 +68,7 @@
 
 
         <div>
+            <!-- LISTA TODOS ANIMES -->
             <div class="col-2">
                 <?php foreach($this->view->animes as $anime){ ?>
                     <div class="item border">
@@ -85,6 +86,7 @@
                     </div>
                 <?php }?>
             </div>
+            <!-- ADICIONAR EPISODIO -->
             <div class="">
                 <h2 class='white' style="margin-top:2.5em;margin-bottom:.5em;text-align:center;">Adicionar Episodio</h2>
                 <form action="/admin/anime/saveEpisodio" method="POST">
@@ -104,7 +106,7 @@
                     <button type="submit" class="submit btn-green">Criar</button>
                 </form>
             </div>
-
+            <!-- DELETAR EPISODIO -->
             <div class="">
                 <h2 class='white' style="margin-top:1.5em;margin-bottom:.5em;text-align:center;">Deletar Episodio</h2>
                 <form action="/admin/anime/deleteEpisodio" method="POST">

@@ -2,58 +2,25 @@
 
 namespace App\Models;
 use MF\Model\Container;
-class Anime extends Container{
-    private $id;
+use Illuminate\Database\Eloquent\Model as Eloquent;
+class Anime extends Eloquent{
     protected $table = "anime";
-    protected $nome;
-    protected $nome_alternativo;
-    protected $slug;
-    protected $descricao;
-    protected $foto;
-    protected $query;
-    protected $columns = "(nome,slug,nome_alternativo,foto,descricao,status)";
-    protected $columns_v = "(:nome,:slug,:nome_alternativo,:foto,:descricao,:status)";
-
-    /*Setters and Getters*/
-    public function __set($name,$value){
-        $this->$name = $value;
+    protected $fillable = ["nome","nome_alternativo","slug","status","descricao","foto","updated_at","created_at"];
+    const UPDATED_AT = null;
+    const CREATED_AT = null;
+    public function __constuct(){
+        
     }
-
-    public function __get($name){
-        return $this->$name;
-    }
-
     public function filter($filter){
-        $filter = "%".$filter."%";
-        $query = "
-            SELECT
-                anime.*
-            FROM
-                anime
-            WHERE
-                anime.nome LIKE :filter OR nome_alternativo LIKE :filter
-        ";
-        $animes = $this->query($query)->runQuery(['filter'=>$filter]);
-        foreach($animes as $indice => $anime){
-            $query = "SELECT categoria.nome FROM anime_categoria RIGHT JOIN categoria on (anime_categoria.fk_id_categoria = categoria.id) WHERE fk_id_anime = :id";
-            $categorias = $this->query($query)->runQuery(['id'=>$anime['id']]);
-            $animes[$indice]['categorias']=$categorias;
-        }
+        $animes = $this->where("nome","like","%$filter%")->orWhere("nome_alternativo","LIKE","%$filter%")->get();
         return $animes;
     }
+    /*Relacionamentos*/
+    public function episodios(){
+        return $this->hasMany(Episodio::class,'fk_id_anime');
+    }
 
-
-    /*
-    @return categorias relacionadas a um anime
-    */
-    public function getCatsByAnime($id){
-        $query = "SELECT
-            categoria.nome,categoria.slug 
-            FROM
-            anime_categoria RIGHT JOIN categoria on(categoria.id = anime_categoria.fk_id_categoria)
-            WHERE anime_categoria.fk_id_anime = :id_anime";
-        return $this->query($query)->runQuery(['id_anime'=>$id]);
-        
-        
+    public function categorias(){
+        return $this->belongsToMany(Categoria::class,'anime_categoria','fk_id_anime','fk_id_categoria');
     }
 }

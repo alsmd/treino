@@ -1,4 +1,2 @@
 <?php
-include '../vendor\autoload.php';
-
-$route = new App\Route;
+include '../init/bootstrap.php';
