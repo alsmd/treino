@@ -7,9 +7,15 @@ use App\Models\Episodio;
 use \App\Connection;
 
 class AnimeController extends Action{
+    protected $anime;
+    public function __construct(Anime $anime){
+        $this->anime = $anime;
+        $this->view = new \stdClass;
+    }
+
+
     public function index(){
-        $anime = new Anime();
-        $this->view->dados = $anime->orderBy('nome','ASC')->get();
+        $this->view->dados = $this->anime->orderBy('nome','ASC')->get();
         $this->view->opcao = '/anime/';
         $this->view->titulo = "Animes";
 
