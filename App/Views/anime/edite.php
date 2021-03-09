@@ -46,6 +46,13 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="foto">Tipo</label>
+                    <select name="tipo" id="">
+                        <option value="legendado" <?php if($this->view->anime['tipo'] == 'legendado') echo 'selected' ?>>Legendado</option>
+                        <option value="dublado" <?php if($this->view->anime['tipo'] == 'dublado') echo 'selected' ?>>Dublado</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="foto">Descricao</label>
                     <textarea id="" cols="30" rows="10" name="descricao" required><?php echo $this->view->anime['descricao'] ?></textarea>
                     <?php if(isset($_GET['descricao'])){?>

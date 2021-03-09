@@ -33,6 +33,13 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="foto">Tipo</label>
+                    <select name="tipo" id="">
+                        <option value="legendado">Legendado</option>
+                        <option value="dublado">Dublado</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="foto">Descricao</label>
                     <textarea id="" cols="30" rows="10" name="descricao" required></textarea>
                 </div>

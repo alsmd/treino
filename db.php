@@ -14,7 +14,8 @@ $table_anime = "
         status enum('finalizado','andamento','cancelado'),
         descricao text,
         foto text,
-        slug varchar(200)
+        slug varchar(200),
+        tipo enum('dublado','legendado') default 'legendado'
     );
 ";
 

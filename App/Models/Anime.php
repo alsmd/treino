@@ -5,7 +5,7 @@ use MF\Model\Container;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 class Anime extends Eloquent{
     protected $table = "anime";
-    protected $fillable = ["nome","nome_alternativo","slug","status","descricao","foto","updated_at","created_at"];
+    protected $fillable = ["nome","nome_alternativo","slug","status","descricao","foto","tipo"];
     const UPDATED_AT = null;
     const CREATED_AT = null;
     public function __constuct(){
