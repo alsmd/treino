@@ -53,9 +53,13 @@ class CategoriaController extends Action{
         }
         if($retorno){
             $mensagem = "Categoria criada com sucesso";
+            $mensagem_type = "success";
         }else{
             $mensagem = "Houve um erro ao criar categoria";
+            $mensagem_type = "error";
         }
+        $_SESSION['mensagem'] = $mensagem;
+        $_SESSION['mensagem_type'] = $mensagem_type;
         header("Location:/admin/categoria/gerenciar?mensagem=$mensagem");
     }
     public function update(){
@@ -73,9 +77,13 @@ class CategoriaController extends Action{
         }
         if($retorno){
             $mensagem = "Categoria Atualizada Com Sucesso!";
+            $mensagem_type = "success";
         }else{
             $mensagem = "Houve Um Erro Ao Atualizar Categoria!";
+            $mensagem_type = "error";
         }
+        $_SESSION['mensagem'] = $mensagem;
+        $_SESSION['mensagem_type'] = $mensagem_type;
         header("Location:/admin/categoria/gerenciar?mensagem=$mensagem");
     }
     public function delete(){
@@ -84,11 +92,13 @@ class CategoriaController extends Action{
         $retorno = $categoria->delete();
         if($retorno){
             $mensagem = "Categoria Apagada Com Sucesso!";
+            $mensagem_type = "success";
         }else{
             $mensagem = "Houve Um Erro Ao Apagar Categoria!";
+            $mensagem_type = "error";
         }
+        $_SESSION['mensagem'] = $mensagem;
+        $_SESSION['mensagem_type'] = $mensagem_type;
         header("Location:/admin/categoria/gerenciar?mensagem=$mensagem");
     }   
-
-
 }

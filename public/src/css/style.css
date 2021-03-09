@@ -12,6 +12,7 @@
     --yellow:#f9ff0a;
     --blue:rgb(30,144,255);
     --light-blue:rgb(135,206,250);
+    --green:rgb(19, 172, 37);
 }
 
 
@@ -65,7 +66,7 @@ main{
     display: block;
 }
 .btn-green{
-    background: linear-gradient(rgb(19, 172, 37),rgb(10, 116, 22)) !important;
+    background: linear-gradient(var(--green),rgb(10, 116, 22)) !important;
     display: block;
 }
 /*Medias*/

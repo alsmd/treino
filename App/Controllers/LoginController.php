@@ -30,9 +30,15 @@ class LoginController extends Action{
         $email_invalido = !($this->verificarEmail($email));
         $password_invalido = !($this->verificarPassword($password));
         if($email_invalido){
-            header('Location:\\?mensagem=email invalido');
+            $_SESSION['mensagem'] = "Email Invalido";
+            $_SESSION['mensagem_type'] = "error";
+            header('Location:\\');
+            die();
         }else if($password_invalido){
-            header('Location:\\?mensagem=password invalido');
+            $_SESSION['mensagem'] = "Password Invalido";
+            $_SESSION['mensagem_type'] = "error";
+            header('Location:\\');
+            die();
         }
         $this->user->email = $email;
         $this->user->password = md5($password);
@@ -40,7 +46,10 @@ class LoginController extends Action{
     }
     public function sair(){
         session_destroy();
-        header('Location:\\?mensagem=deslogado');
+        session_start();
+        $_SESSION['mensagem'] = "Deslogado";
+        $_SESSION['mensagem_type'] = "error";
+        header('Location:\\');
     }
     public function verificarPassword($password){
         return 

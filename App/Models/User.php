@@ -16,27 +16,43 @@ class User extends Eloquent{
         $email_exists = count($this->where('email',$this->email)->get());
 
         if($email_exists){
-            header("Location:/?mensagem=email ja existe");
+            $_SESSION['mensagem'] = "email ja existe";
+            $_SESSION['mensagem_type'] = "error";
+            header("Location:/");
+
         }
         if($this->save()){
-            header("Location:/?mensagem=conta criado com sucesso");
+            $mensagem = "conta criado com sucesso";
+            $mensagem_type = "success";
         }else{
-            header("Location:/?mensagem=erro ao criar a conta");
+            $mensagem = "erro ao criar a conta";
+            $mensagem_type = "error";
         }
+        $_SESSION['mensagem'] = $mensagem;
+        $_SESSION['mensagem_type'] =$mensagem_type;
+        header("Location:/");
     }
 
     public function autenticarUser(){
         $user = $this->where('email',$this->email)->first();
         $user_not_exists = !(count($user));
         if($user_not_exists){
-            header("Location:/?mensagem=usuario nao cadastrado");
+            $_SESSION['mensagem'] = "usuario nao cadastrado";
+            $_SESSION['mensagem_type'] ="error";
+            header("Location:/");
         }
         if($user->password == $this->password){
             $_SESSION['email'] = $this->email;
             $_SESSION['nome'] = $this->nome;
-            header("Location:/?mensagem=logado com sucesso");
+            $mensagem = "logado com sucesso";
+            $mensagem_type = "success";
         }else{
+            $mensagem = "senha nao corresponde ao email digitado";
+            $mensagem_type = "error";
             header("Location:/?mensagem=senha nao corresponde ao email digitado");
         }
+        $_SESSION['mensagem'] = $mensagem;
+        $_SESSION['mensagem_type'] =$mensagem_type;
+        header("Location:/");
     }
 }

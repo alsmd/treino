@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="http://localhost:8080/src/css/partes/scrollbar.css">
     <link rel="stylesheet" href="http://localhost:8080/src/css/partes/footer.css">
     <link rel="stylesheet" href="http://localhost:8080/src/css/partes/hamburger.css">
+    <link rel="stylesheet" href="http://localhost:8080/src/css/partes/toast.css">
     <!--Favicon-->
     <link rel='icon' href='http://localhost:8080/src/fotos/favicon.ico' type='image/x-icon'>
     <!--FontAsome-->
@@ -48,5 +49,20 @@
             </div>
         </div>
     </footer>
+    <?php if(isset($_SESSION['mensagem'])){ ?>
+        <div id="toast" class="<?php echo $_SESSION['mensagem_type'] ?>">
+            <?php echo ucwords($_SESSION['mensagem']); ?>
+        </div>
+        <script>
+            let toast = document.getElementById('toast');
+            toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        </script>
+    <?php
+        $_SESSION['mensagem'] = null;
+        $_SESSION['mensagem_type'] = null;
+    } ?>
 </body>
 </html>

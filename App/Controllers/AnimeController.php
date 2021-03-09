@@ -94,10 +94,14 @@ class AnimeController extends Action{
         //caso o anime tenha sido criado com sucesso iremos passar uma mensagem
         if($retorno){
             $mensagem = "Anime criado com sucesso";
+            $mensagem_type = 'success';
         }else{
             $mensagem = "Houve um erro ao criar anime";
+            $mensagem_type = 'error';
         }
-        header("Location:/admin/anime/gerenciar?mensagem=$mensagem");
+        $_SESSION['mensagem'] = $mensagem;
+        $_SESSION['mensagem_type'] = $mensagem_type;
+        header("Location:/admin/anime/gerenciar");
 
     }
     public function update(){
@@ -139,8 +143,14 @@ class AnimeController extends Action{
         }
         if($retorno){
             $mensagem = "Anime Atualizado com sucesso";
+            $mensagem_type = "success";
+        }else{
+            $mensagem = "Erro Ao Atualizar Anime";
+            $mensagem_type = "error";
         }
-        header("Location:/admin/anime/gerenciar?mensagem=$mensagem");
+        $_SESSION['mensagem'] = $mensagem;
+        $_SESSION['mensagem_type'] = $mensagem_type;
+        header("Location:/admin/anime/gerenciar");
     }
     public function delete(){
         $id = $_POST['id'];
@@ -155,10 +165,14 @@ class AnimeController extends Action{
         }
         if($retorno){
             $mensagem = "Anime Apagada Com Sucesso!";
+            $mensagem_type = 'success';
         }else{
             $mensagem = "Houve Um Erro Ao Apagar Anime!";
+            $mensagem_type = 'error';
         }
-        header("Location:/admin/anime/gerenciar?mensagem=$mensagem");
+        $_SESSION['mensagem'] = $mensagem;
+        $_SESSION['mensagem_type'] = $mensagem_type;
+        header("Location:/admin/anime/gerenciar?");
     }
 
     public function saveEpisodio(){
@@ -195,9 +209,13 @@ class AnimeController extends Action{
         }
         if($retorno){
             $mensagem = "Episodio Apagado com Sucesso!";
+            $mensagem_type = "success";
         }else{
             $mensagem = "Houve Um Erro Ao Apagar Episodio!";
+            $mensagem_type = "error";
         }
+         $_SESSION['mensagem'] = $mensagem;
+         $_SESSION['mensagem_type'] = $mensagem_type;
         header("Location:/admin/anime/gerenciar?mensagem=$mensagem");
     }
 
