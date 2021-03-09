@@ -18,7 +18,7 @@
                     Logue em Nossa Plataforma
                 </div>
                 <div class="body">
-                    <input type="text" placeholder="Email" name="email">
+                    <input type="email" placeholder="Email" name="email">
                     <input type="password" placeholder="Senha" name="password">
                     <button class="btn-red">Logue</button>
                     <a  class="white"  id="open-register">Não possui uma conta?</a>
@@ -32,7 +32,7 @@
                     Registre-se em Nossa Plataforma
                 </div>
                 <div class="body">
-                    <input type="text" placeholder="Email" name="email">
+                    <input type="email" placeholder="Email" name="email">
                     <input type="password" placeholder="Senha" name="password">
                     <button class="btn-blue">Registrar</button>
                     <a  class="white"  id="open-login">Ja possui uma conta?</a>

@@ -57,7 +57,8 @@ $table_users = "
             id int primary key auto_increment,
             nome varchar(200) null,
             email varchar(200) not null unique,
-            password varchar(32) not null
+            password varchar(32) not null,
+            job enum('user','admin') default 'user'
         );
 ";
 /*

@@ -20,7 +20,9 @@
             <li><a href="">Movies</a></li>
             <li><a href="/categoria">Categories</a></li>
             <li><a href="">Schedule</a></li>
-            <li><a href="/admin">admin</a></li>
+            <?php if(authAdmin()){ ?>
+                <li><a href="/admin">admin</a></li>
+            <?php } ?>
         </ul>
     </nav>
 
@@ -32,7 +34,9 @@
             <li><a href="">Movies</a></li>
             <li><a href="/categoria">Categories</a></li>
             <li><a href="">Schedule</a></li>
-            <li><a href="/admin">Admin</a></li>
+            <?php if(authAdmin()){ ?>
+                <li><a href="/admin">Admin</a></li>
+            <?php } ?>
         </ul>
     </div>
     <script>
