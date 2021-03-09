@@ -51,6 +51,15 @@ $table_episodio = "
         );
         ALTER TABLE episodio ADD CONSTRAINT fk_anime_episodio FOREIGN KEY(fk_id_anime) REFERENCES anime(id) ON DELETE CASCADE;
 ";
+$table_users = "
+        DROP TABLE IF EXISTS users;
+        CREATE TABLE IF NOT EXISTS users(
+            id int primary key auto_increment,
+            nome varchar(200) null,
+            email varchar(200) not null unique,
+            password varchar(32) not null
+        );
+";
 /*
     Dropando todas tabelas
     @primeiro drope as tabelas filhass para deposi dropar as pais
@@ -60,6 +69,7 @@ $drop = "
     DROP TABLE IF EXISTS categoria;
     DROP TABLE IF EXISTS episodio;
     DROP TABLE IF EXISTS anime;
+    DROP TABLE IF EXISTS users;
 ";
 try{
     $prepare = $db->prepare($drop);
@@ -82,6 +92,9 @@ try{
     $prepare->execute();
     echo $prepare->errorInfo()[1]. '--'.$prepare->errorInfo()[2];
     $prepare = $db->prepare($table_episodio);
+    $prepare->execute();
+    echo $prepare->errorInfo()[1]. '--'.$prepare->errorInfo()[2];
+    $prepare = $db->prepare($table_users);
     $prepare->execute();
     echo $prepare->errorInfo()[1]. '--'.$prepare->errorInfo()[2];
 }catch(\PDOException $e){

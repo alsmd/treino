@@ -9,14 +9,15 @@
 }
 .area-lateral .noticia .body .mensagem,.area-lateral .noticia .body button{
     display: block;
-    margin: 1em;
+    margin: .3em;
 }
-.area-lateral .noticia .body button{
+.area-lateral .noticia .body button,.area-lateral .noticia .body .btn{
     padding: .5em 1em;
     outline: 0;
     border: 0;
     color: white;
     background: linear-gradient(var(--dark-gray),var(--gray)) ;
+    border-radius: .5em;
 }
 .area-lateral .noticia .body button:hover{
     cursor: pointer;
@@ -44,12 +45,27 @@
 }
 .area-lateral .anime-nome-list .body .mensagem {
     margin: 0;
-    padding: .2em 0;
     font-weight: 500;
 }
 .area-lateral .anime-nome-list .body .mensagem:hover{
     color: var(--red);
     cursor: pointer;
+}
+/*Form*/
+
+.area-lateral  form input{
+    padding: .5em;
+    border: none;
+    outline: 0;
+    border-radius: .6em;
+    margin: .5em 0;
+}
+.area-lateral  a:hover{
+    cursor: pointer;
+    opacity:.8;
+}
+.area-lateral .registro{
+    display: none;
 }
 @media(max-width:1000px){
     .banner{ 

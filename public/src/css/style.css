@@ -55,6 +55,19 @@ main{
     border: 1px solid var(--gray) !important;
     box-shadow: 0px 0 .5px 0 var(--white) !important;
 }
+/*btns*/
+.btn-blue{
+    background: linear-gradient(var(--light-blue),var(--blue)) !important;
+    display: block;
+}
+.btn-red{
+    background: linear-gradient(var(--light-red),var(--orange)) !important;
+    display: block;
+}
+.btn-green{
+    background: linear-gradient(rgb(19, 172, 37),rgb(10, 116, 22)) !important;
+    display: block;
+}
 /*Medias*/
 @media(max-width: 1340px){
     main {

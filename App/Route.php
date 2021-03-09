@@ -57,6 +57,12 @@ class Route extends Bootstrap{
             'controller'=> 'AdminController',
             'action' => 'controlarAcao'
         ];
+        /*Login system*/
+        $routes['login'] = [
+            'path' => '/login/{}',
+            'controller'=> 'LoginController',
+            'action' => 'controlarAcao'
+        ];
         $this->setRoutes($routes);
     }
 

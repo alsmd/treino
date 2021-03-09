@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../vendor/autoload.php';
 use Illuminate\Database\Capsule\Manager as Capsule;
 use App\Models\Anime;
@@ -14,6 +15,3 @@ $capsule->addConnection([
 
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
-$capsule->bootEloquent();
-//inicia aplicação
-$route = new App\Route;
