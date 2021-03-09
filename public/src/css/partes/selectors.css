@@ -21,8 +21,17 @@
 .selector:first-child:hover, .area-principal .footer .selector:hover{
     background:var(--light-red);
 }
+.selector:first-child.selecionado{
+    background:var(--light-red);
+    color: var(--white);
+}
 .selector:last-child:hover{
     background:var(--gray);
+}
+.selector:last-child.selecionado{
+    background:var(--gray);
+    color: var(--white);
+
 }
 .next{
     margin-top: .8em;

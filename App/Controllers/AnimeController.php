@@ -22,8 +22,12 @@ class AnimeController extends Action{
         $this->render('model2','layout');
     }
     public function search(){
-        $anime_class = new Anime();
-        $animes = $anime_class->filter($_POST['filter']);
+        $filter = isset($_POST['filter']) ? $_POST['filter']:$_GET['filter'];
+        $animes = $this->anime->filter($filter);
+        if(isset($_GET['tipo'])){
+            $animes =$animes->where('tipo',$_GET['tipo']); 
+        }
+        $this->view->filter = $filter;
         $this->view->animes = $animes;
         $this->render('model1','layout');
     }

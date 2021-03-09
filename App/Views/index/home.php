@@ -5,13 +5,29 @@
 <main>
     <div class="area-principal">
         <div class="selectors">
-            <div class="selector">
+            <div class="selector <?php if(isset($_GET['tipo']) && $_GET['tipo'] == 'legendado'){echo 'selecionado';} ?>" id="legendado">
                 Subbed
             </div>
-            <div class="selector">
+            <div class="selector <?php if(isset($_GET['tipo']) && $_GET['tipo'] == 'dublado'){echo 'selecionado';} ?>" id="dublado">
                 Dubbed
             </div>
         </div>
+            <script>
+                let dublado = document.getElementById('dublado');
+                let legendado = document.getElementById('legendado');
+                let filter = "<?php  if(isset($this->view->filter)){echo $this->view->filter;}else{echo '';}  ?>";
+                if(filter != ''){
+                    filter = "&&filter="+filter;
+                }else{
+                    filter = '';
+                }
+                dublado.addEventListener('click',function(e){
+                    window.location="?tipo=dublado"+filter;
+                });
+                legendado.addEventListener('click',function(e){
+                    window.location="?tipo=legendado"+filter;
+                });
+            </script>
         <!--Animes-->
         <div class="area-animes">
             <?php foreach($this->view->episodios as $episodio){ 

@@ -19,7 +19,11 @@ class CategoriaController extends Action{
     public function show($genero){
         $slug = $genero[2];
         $categoria = Categoria::where('slug',$slug)->first();
-        $this->view->animes = $categoria->animes()->get();
+        if(isset($_GET['tipo'])){
+            $this->view->animes = $categoria->animes()->where('tipo',$_GET['tipo'])->get();
+        }else{
+            $this->view->animes = $categoria->animes()->get();
+        }
         $this->render('model1','layout');
     }
 
