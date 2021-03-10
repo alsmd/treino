@@ -24,8 +24,8 @@
 </head>
 <body>
     <?php 
-        $admin = explode('/',$_SERVER['REQUEST_URI'])[1];
-        if($admin == 'admin'){
+        $url = explode('/',$_SERVER['REQUEST_URI'])[1];
+        if($url == 'admin' || $url == 'perfil'){
             $this->header(2); 
         }else{
             $this->header(1); 

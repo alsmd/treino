@@ -24,6 +24,7 @@ class User extends Eloquent{
         if($this->save()){
             $mensagem = "conta criado com sucesso";
             $mensagem_type = "success";
+            $_SESSION['email'] = $this->email;
         }else{
             $mensagem = "erro ao criar a conta";
             $mensagem_type = "error";

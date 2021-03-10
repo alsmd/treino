@@ -5,7 +5,7 @@
     color: white;
     border-radius: 1em;
     z-index: 10;
-    position: absolute;
+    position: fixed;
     top: 3vh;
     right: 1vw;
     visibility: hidden;

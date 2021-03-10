@@ -21,7 +21,10 @@
             <li><a href="/categoria">Categories</a></li>
             <li><a href="">Schedule</a></li>
             <?php if(authAdmin()){ ?>
+                <li><a href="/perfil">Perfil</a></li>
                 <li><a href="/admin">admin</a></li>
+            <?php }else if(authUser()){ ?>
+                <li><a href="/perfil">Perfil</a></li>
             <?php } ?>
         </ul>
     </nav>
@@ -35,7 +38,10 @@
             <li><a href="/categoria">Categories</a></li>
             <li><a href="">Schedule</a></li>
             <?php if(authAdmin()){ ?>
+                <li><a href="/perfil">Perfil</a></li>
                 <li><a href="/admin">Admin</a></li>
+            <?php }else if(authUser()){ ?>
+                <li><a href="/perfil">Perfil</a></li>
             <?php } ?>
         </ul>
     </div>

@@ -21,6 +21,7 @@
     </div>
     <div class="content">
         <iframe src="<?php echo $this->view->episodio['link'] ?>" allowfullscreen="true" frameborder="0"  scrolling="no" width="100%" height="100%"></iframe>
+
     </div>
     <div class="footer">
         <span class="titulo">title: </span> <?php echo $this->view->episodio['titulo'] ?>

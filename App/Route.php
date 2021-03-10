@@ -63,6 +63,12 @@ class Route extends Bootstrap{
             'controller'=> 'LoginController',
             'action' => 'controlarAcao'
         ];
+        /*Perfil System*/
+        $routes['perfil'] = [
+            'path' => '/perfil',
+            'controller'=> 'PerfilController',
+            'action' => 'controlarAcao'
+        ];
         $this->setRoutes($routes);
     }
 
