@@ -48,11 +48,17 @@
             </a>
             <?php } ?>
         </div> <!--Fim area dos animes-->
-        <div class="footer">
-            <div class="selector next">
-                Next Page
+        <?php if(count($this->view->episodios) == 2){ ?>
+            <div class="footer">
+                <?php 
+                    $href = isset($_GET['page']) ? "?page=".$_GET['page'] + 1: "?page=2";
+                    $href = isset($_GET['tipo']) ? $href .'&tipo='.$_GET['tipo']:$href;
+                ?>
+                <a class="selector next" href="<?php echo $href; ?>" style="display:block;"> 
+                    Next Page
+                </a>
             </div>
-        </div>
+        <?php } ?>
     </div>
     <?php $this->renderAside(); ?>
    

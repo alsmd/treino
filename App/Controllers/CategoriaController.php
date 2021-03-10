@@ -19,10 +19,13 @@ class CategoriaController extends Action{
     public function show($genero){
         $slug = $genero[2];
         $categoria = Categoria::where('slug',$slug)->first();
+        $perPage = 8;
+        $pagAtual= isset($_GET['page'])? $_GET['page'] : 1;
+        $pular=($pagAtual - 1) * $perPage;
         if(isset($_GET['tipo'])){
-            $this->view->animes = $categoria->animes()->where('tipo',$_GET['tipo'])->get();
+            $this->view->animes = $categoria->animes()->where('tipo',$_GET['tipo'])->limit($perPage)->offset($pular)->get();
         }else{
-            $this->view->animes = $categoria->animes()->get();
+            $this->view->animes = $categoria->animes()->limit($perPage)->offset($pular)->get();
         }
         $this->render('model1','layout');
     }

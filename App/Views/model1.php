@@ -73,9 +73,13 @@
             </div><!--Fim animes-->
             <?php if(count($this->view->animes) == 8){ ?>
                 <div class="footer">
-                    <div class="selector next">
+                    <?php 
+                        $href = isset($_GET['page']) ? "?page=".$_GET['page'] + 1: "?page=2";
+                        $href = isset($_GET['tipo']) ? $href .'&tipo='.$_GET['tipo']:$href;
+                    ?>
+                    <a class="selector next" href="<?php echo $href; ?>" style="display:block;"> 
                         Next Page
-                    </div>
+                    </a>
                 </div>
             <?php } ?>
         <?php }?>
