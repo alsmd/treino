@@ -3,7 +3,7 @@
         <div class="left">
             <a href="/" class="brand"></a>
             <div class="area-barra-pesquisar">
-                <form action="/pesquisar" method="post">
+                <form action="/pesquisar" method="get">
                     <input type="text" class="barra-pesquisar" placeholder="Search" name='filter'>
                     <input type="submit" class="btn-pesquisar" value="" >
                 </form>

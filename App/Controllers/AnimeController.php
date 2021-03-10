@@ -23,12 +23,21 @@ class AnimeController extends Action{
     }
     public function search(){
         $filter = isset($_POST['filter']) ? $_POST['filter']:$_GET['filter'];
-        $animes = $this->anime->filter($filter);
+        $animes = $this->anime;
         if(isset($_GET['tipo'])){
-            $animes =$animes->where('tipo',$_GET['tipo']); 
+            $animes =$animes->where([
+                ['tipo',$_GET['tipo']],
+                ["nome","like","%$filter%"]
+            ]);
+        }else{
+            $animes = $animes->where("nome","like","%$filter%")->orWhere("nome_alternativo","LIKE","%$filter%");
         }
+
+        $perPage = 8;
+        $pagAtual= isset($_GET['page'])? $_GET['page'] : 1;
+        $pular=($pagAtual - 1) * $perPage;
         $this->view->filter = $filter;
-        $this->view->animes = $animes;
+        $this->view->animes = $animes->limit($perPage)->offset($pular)->get();
         $this->render('model1','layout');
     }
     public function show($slug){

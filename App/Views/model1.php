@@ -76,6 +76,8 @@
                     <?php 
                         $href = isset($_GET['page']) ? "?page=".$_GET['page'] + 1: "?page=2";
                         $href = isset($_GET['tipo']) ? $href .'&tipo='.$_GET['tipo']:$href;
+                        $href = isset($this->view->filter) ? $href .'&filter='. $this->view->filter:$href;
+
                     ?>
                     <a class="selector next" href="<?php echo $href; ?>" style="display:block;"> 
                         Next Page

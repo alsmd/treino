@@ -12,7 +12,6 @@ class Anime extends Eloquent{
         
     }
     public function filter($filter){
-        $animes = $this->where("nome","like","%$filter%")->orWhere("nome_alternativo","LIKE","%$filter%")->get();
         return $animes;
     }
     /*Relacionamentos*/
